@@ -1,4 +1,4 @@
-package tictactoegame.com.br.tictactoe;
+package tictactoegame.com.br.code.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,10 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import tictactoegame.com.br.tictactoe.MainActivity;
-import tictactoegame.com.br.tictactoe.R;
+import tictactoegame.com.br.code.R;
 
-public class FirstScreen extends AppCompatActivity {
+public class FirstScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,7 @@ public class FirstScreen extends AppCompatActivity {
                 //We can also transfer data with intents.
 
                 //Creating an object of intent through which we can go from current activity to MainAcivity
-                Intent i = new Intent(FirstScreen.this,MainActivity.class);
+                Intent i = new Intent(FirstScreenActivity.this,MainActivity.class);
 
                 //Adding data with intent to transfer.
                 i.putExtra("PLAYER_1",PLAYER_1);

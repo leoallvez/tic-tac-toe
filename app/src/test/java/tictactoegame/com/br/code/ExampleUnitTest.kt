@@ -1,4 +1,4 @@
-package tictactoegame.com.br.tictactoe
+package tictactoegame.com.br.code
 
 import org.junit.Test
 

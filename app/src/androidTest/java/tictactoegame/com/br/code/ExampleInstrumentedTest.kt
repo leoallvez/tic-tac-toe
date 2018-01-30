@@ -1,4 +1,4 @@
-package tictactoegame.com.br.tictactoe
+package tictactoegame.com.br.code
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
