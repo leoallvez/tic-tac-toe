@@ -11,9 +11,9 @@ import android.widget.Toast;
 
 import tictactoegame.com.br.code.R;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class TwoPlayersActivity extends AppCompatActivity implements View.OnClickListener {
 
-        private final static String TAG = MainActivity.class.getSimpleName();
+        private final static String TAG = TwoPlayersActivity.class.getSimpleName();
         boolean PLAYER_X = true;
 
         int TURN_COUNT = 0;

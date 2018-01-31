@@ -20,7 +20,7 @@
         <TableRow>
 
             <Button
-                android:id="@+id/b00"
+                android:id="@+id/btn00"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:textSize="22sp"
@@ -29,10 +29,12 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 style="@style/Widget.AppCompat.Button"
+                android:onClick="onClick"
+                android:tag="0"
                 />
 
             <Button
-                android:id="@+id/b01"
+                android:id="@+id/btn01"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:textSize="22sp"
@@ -41,10 +43,12 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 style="@style/Widget.AppCompat.Button"
+                android:onClick="onClick"
+                android:tag="1"
                 />
 
             <Button
-                android:id="@+id/b02"
+                android:id="@+id/btn02"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:textSize="22sp"
@@ -53,6 +57,8 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 style="@style/Widget.AppCompat.Button"
+                android:onClick="onClick"
+                android:tag="2"
                 />
 
         </TableRow>
@@ -61,7 +67,7 @@
         <TableRow>
 
             <Button
-                android:id="@+id/b10"
+                android:id="@+id/btn03"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:textSize="22sp"
@@ -70,10 +76,12 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 style="@style/Widget.AppCompat.Button"
+                android:onClick="onClick"
+                android:tag="3"
                 />
 
             <Button
-                android:id="@+id/b11"
+                android:id="@+id/btn04"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:textSize="22sp"
@@ -82,10 +90,12 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 style="@style/Widget.AppCompat.Button"
+                android:onClick="onClick"
+                android:tag="4"
                 />
 
             <Button
-                android:id="@+id/b12"
+                android:id="@+id/btn05"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:textSize="22sp"
@@ -94,6 +104,8 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 style="@style/Widget.AppCompat.Button"
+                android:onClick="onClick"
+                android:tag="5"
                 />
 
         </TableRow>
@@ -102,7 +114,7 @@
         <TableRow>
 
             <Button
-                android:id="@+id/b20"
+                android:id="@+id/btn06"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:textSize="22sp"
@@ -111,10 +123,12 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 style="@style/Widget.AppCompat.Button"
+                android:onClick="onClick"
+                android:tag="6"
                 />
 
             <Button
-                android:id="@+id/b21"
+                android:id="@+id/btn07"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:textSize="22sp"
@@ -123,10 +137,12 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 style="@style/Widget.AppCompat.Button"
+                android:onClick="onClick"
+                android:tag="7"
                 />
 
             <Button
-                android:id="@+id/b22"
+                android:id="@+id/btn08"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:textSize="22sp"
@@ -135,6 +151,8 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 style="@style/Widget.AppCompat.Button"
+                android:onClick="onClick"
+                android:tag="8"
                 />
 
         </TableRow>
