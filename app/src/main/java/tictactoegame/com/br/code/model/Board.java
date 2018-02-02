@@ -6,32 +6,22 @@ package tictactoegame.com.br.code.model;
 
 public class Board {
 
-    private Player player1;
-    private Player player2;
+    private Player playerOne;
+    private Player playerTwo;
     public static int[] positions;
-    public static final int min = 2;
+    public static final int MINIMUM = 2;
 
 
-    public Board(Player player1, Player player2) {
-        this.player1 = player1;
-        this.player2 = player2;
+    public Board(Player playerOne, Player playerTwo) {
+
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
         positions = new int[9];
         start();
     }
 
     public void start() {
-        boolean x = true;
-        for (int i = 0; i < positions.length; i++) {
-
-            if (i == 4) {
-                positions[i] = 4;
-            } else if (x == true) {
-                positions[i] = 3;
-            } else {
-                positions[i] = 2;
-            }
-            x = !x;
-        }
+        positions = new int[]{3, 2, 3, 2, 4, 2, 3, 2, 3};
     }
 
     public int showPosition(int movement) {
@@ -39,36 +29,22 @@ public class Board {
     }
 
     public boolean isFullyPopulated() {
-        int i = 0;
-        for (int posicoe : positions) {
-            if ((posicoe == player1.getId()) || (posicoe == player2.getId())) {
-                i++;
+        int count = 0;
+        for (int position : positions) {
+            if (position == playerOne.getId() || position == playerTwo.getId()) {
+                count++;
             }
         }
-        return i == Board.positions.length;
+        return count == Board.positions.length;
     }
 
     public boolean gameOver() {
-        if (isFullyPopulated()) {
-            return true;
-        }
-        if (player1.won()) {
-            return true;
-        }
 
-        return player2.won();
+        return isFullyPopulated() || playerOne.won() ||  playerTwo.won();
     }
 
     public static boolean isEmptyPosition(int movement){
-        return positions[movement] >= min;
+        return positions[movement] >= MINIMUM;
     }
 
-    public void show(){
-        System.out.println();
-        System.out.println();
-        for(int i = 0; i < positions.length; i++){
-            System.out.print(positions[i]);
-            if(i % 3 == 2){System.out.println();}
-        }
-    }
 }

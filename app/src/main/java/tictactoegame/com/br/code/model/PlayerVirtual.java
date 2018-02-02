@@ -29,53 +29,52 @@ public class PlayerVirtual extends Player {
 
     public void randomPlay (){
         Random random = new Random();
-        int movement = random.nextInt(9);
-        Board.positions[movement] = id;
+        Board.positions[random.nextInt(9)] = id;
     }
 
     private boolean canWin(int id){
-        int[] b = Board.positions;
+        int[] p = Board.positions;
 
         //Horizontal Superior
-        if((b[0] == id) && (b[1] == id) && (Board.isEmptyPosition(2))){b[2] = BRAND; return true;}
-        if((b[1] == id) && (b[2] == id) && (Board.isEmptyPosition(0))){b[0] = BRAND; return true;}
-        if((b[0] == id) && (b[2] == id) && (Board.isEmptyPosition(1))){b[1] = BRAND; return true;}
+        if((p[0] == id) && (p[1] == id) && (Board.isEmptyPosition(2))){p[2] = BRAND; return true;}
+        if((p[1] == id) && (p[2] == id) && (Board.isEmptyPosition(0))){p[0] = BRAND; return true;}
+        if((p[0] == id) && (p[2] == id) && (Board.isEmptyPosition(1))){p[1] = BRAND; return true;}
 
         //Central Horizontal
-        if((b[3] == id) && (b[4] == id) && (Board.isEmptyPosition(5))){b[5] = BRAND; return true;}
-        if((b[4] == id) && (b[5] == id) && (Board.isEmptyPosition(3))){b[3] = BRAND; return true;}
-        if((b[3] == id) && (b[5] == id) && (Board.isEmptyPosition(4))){b[4] = BRAND; return true;}
+        if((p[3] == id) && (p[4] == id) && (Board.isEmptyPosition(5))){p[5] = BRAND; return true;}
+        if((p[4] == id) && (p[5] == id) && (Board.isEmptyPosition(3))){p[3] = BRAND; return true;}
+        if((p[3] == id) && (p[5] == id) && (Board.isEmptyPosition(4))){p[4] = BRAND; return true;}
 
         //Bottom Horizontal
-        if((b[6] == id) && (b[7] == id) && (Board.isEmptyPosition(8))){b[8] = BRAND; return true;}
-        if((b[7] == id) && (b[8] == id) && (Board.isEmptyPosition(6))){b[6] = BRAND; return true;}
-        if((b[6] == id) && (b[8] == id) && (Board.isEmptyPosition(7))){b[7] = BRAND; return true;}
+        if((p[6] == id) && (p[7] == id) && (Board.isEmptyPosition(8))){p[8] = BRAND; return true;}
+        if((p[7] == id) && (p[8] == id) && (Board.isEmptyPosition(6))){p[6] = BRAND; return true;}
+        if((p[6] == id) && (p[8] == id) && (Board.isEmptyPosition(7))){p[7] = BRAND; return true;}
 
         //Vertical Left
-        if((b[0] == id) && (b[3] == id) && (Board.isEmptyPosition(6))){b[6] = BRAND; return true;}
-        if((b[3] == id) && (b[6] == id) && (Board.isEmptyPosition(0))){b[0] = BRAND; return true;}
-        if((b[0] == id) && (b[6] == id) && (Board.isEmptyPosition(3))){b[3] = BRAND; return true;}
+        if((p[0] == id) && (p[3] == id) && (Board.isEmptyPosition(6))){p[6] = BRAND; return true;}
+        if((p[3] == id) && (p[6] == id) && (Board.isEmptyPosition(0))){p[0] = BRAND; return true;}
+        if((p[0] == id) && (p[6] == id) && (Board.isEmptyPosition(3))){p[3] = BRAND; return true;}
 
         //Vertical Central
-        if((b[1] == id) && (b[4] == id) && (Board.isEmptyPosition(7))){b[7] = BRAND; return true;}
-        if((b[4] == id) && (b[7] == id) && (Board.isEmptyPosition(1))){b[1] = BRAND; return true;}
-        if((b[1] == id) && (b[7] == id) && (Board.isEmptyPosition(4))){b[4] = BRAND; return true;}
+        if((p[1] == id) && (p[4] == id) && (Board.isEmptyPosition(7))){p[7] = BRAND; return true;}
+        if((p[4] == id) && (p[7] == id) && (Board.isEmptyPosition(1))){p[1] = BRAND; return true;}
+        if((p[1] == id) && (p[7] == id) && (Board.isEmptyPosition(4))){p[4] = BRAND; return true;}
 
         //Vertical Right
-        if((b[2] == id) && (b[5] == id) && (Board.isEmptyPosition(8))){b[8] = BRAND; return true;}
-        if((b[5] == id) && (b[8] == id) && (Board.isEmptyPosition(2))){b[2] = BRAND; return true;}
-        if((b[2] == id) && (b[8] == id) && (Board.isEmptyPosition(5))){b[5] = BRAND; return true;}
+        if((p[2] == id) && (p[5] == id) && (Board.isEmptyPosition(8))){p[8] = BRAND; return true;}
+        if((p[5] == id) && (p[8] == id) && (Board.isEmptyPosition(2))){p[2] = BRAND; return true;}
+        if((p[2] == id) && (p[8] == id) && (Board.isEmptyPosition(5))){p[5] = BRAND; return true;}
 
         //Diagonals
-        if((b[0] == id) && (b[4] == id) && (Board.isEmptyPosition(8))){b[8] = BRAND; return true;}
-        if((b[4] == id) && (b[8] == id) && (Board.isEmptyPosition(0))){b[0] = BRAND; return true;}
-        if((b[0] == id) && (b[8] == id) && (Board.isEmptyPosition(4))){b[4] = BRAND; return true;}
+        if((p[0] == id) && (p[4] == id) && (Board.isEmptyPosition(8))){p[8] = BRAND; return true;}
+        if((p[4] == id) && (p[8] == id) && (Board.isEmptyPosition(0))){p[0] = BRAND; return true;}
+        if((p[0] == id) && (p[8] == id) && (Board.isEmptyPosition(4))){p[4] = BRAND; return true;}
 
-        if((b[4] == id) && (b[6] == id) && (Board.isEmptyPosition(2))){b[2] = BRAND; return true;}
-        if((b[4] == id) && (b[2] == id) && (Board.isEmptyPosition(6))){b[6] = BRAND; return true;}
-        if((b[6] == id) && (b[2] == id) && (Board.isEmptyPosition(4))){b[4] = BRAND; return true;}
+        if((p[4] == id) && (p[6] == id) && (Board.isEmptyPosition(2))){p[2] = BRAND; return true;}
+        if((p[4] == id) && (p[2] == id) && (Board.isEmptyPosition(6))){p[6] = BRAND; return true;}
+        if((p[6] == id) && (p[2] == id) && (Board.isEmptyPosition(4))){p[4] = BRAND; return true;}
 
-        Board.positions = b;
+        Board.positions = p;
 
         return false;
     }

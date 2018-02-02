@@ -1,10 +1,9 @@
 package tictactoegame.com.br.code.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 
 import tictactoegame.com.br.code.R;
 
@@ -17,10 +16,10 @@ public class FirstScreenActivity extends AppCompatActivity {
     }
 
     public void startOnePlayer(View v) {
-        startActivity(new Intent(this,OnePlayerActivity.class));
+        startActivity(new Intent(this, OnePlayerActivity.class));
     }
 
     public void startTwoPlayers(View v) {
-        startActivity(new Intent(this,TwoPlayersActivity.class));
+        startActivity(new Intent(this, TwoPlayersActivity.class));
     }
 }
