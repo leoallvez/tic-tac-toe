@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <!--Table Layout with 3 rows and each row with 3 buttons-->
     <TableLayout
         android:id="@+id/glGameBoard"
@@ -15,6 +17,13 @@
         android:columnCount="3"
         android:padding="8dp"
         >
+
+        <TextView
+            android:id="@+id/points"
+            android:layout_width="match_parent"
+            android:text="Me: 0, Machine: 0"
+            android:padding="4dp"
+            android:layout_height="wrap_content" />
 
         <!--Row 1-->
         <TableRow>

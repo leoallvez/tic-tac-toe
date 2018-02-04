@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import tictactoegame.com.br.code.R;
 import tictactoegame.com.br.code.model.Board;
@@ -15,6 +16,7 @@ public class OnePlayerActivity extends AppCompatActivity {
     private Board board;
     private Player player;
     private PlayerVirtual playerVirtual;
+    private TextView points;
     private int[] buttonsId = {
         R.id.btn00, R.id.btn01, R.id.btn02,
         R.id.btn03, R.id.btn04, R.id.btn05,
@@ -35,6 +37,8 @@ public class OnePlayerActivity extends AppCompatActivity {
         for (int i = 0; i < buttons.length; i++) {
             buttons[i] = findViewById(buttonsId[i]);
         }
+
+        points = findViewById(R.id.points);
     }
 
     private void initialize() {
@@ -54,9 +58,16 @@ public class OnePlayerActivity extends AppCompatActivity {
         if ((Board.isEmptyPosition(movement)) && (!board.gameOver())) {
             player.play(movement);
 
-            if (!player.won() && !playerVirtual.won()) {
+            if(player.won()){
+                player.toScore();
+            }else if(!playerVirtual.won()){
                 playerVirtual.analyzeAndPlay(player.getTag());
+                if(playerVirtual.won()){
+                    playerVirtual.toScore();
+                }
             }
+            points.setText("Me: " + player.getPoints()
+                    + ", Machine: "+ playerVirtual.getPoints());
             fills();
         }
     }
