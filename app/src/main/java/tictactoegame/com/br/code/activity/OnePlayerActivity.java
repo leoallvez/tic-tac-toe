@@ -16,9 +16,9 @@ public class OnePlayerActivity extends AppCompatActivity {
     private Player player;
     private PlayerVirtual playerVirtual;
     private int[] buttonsId = {
-            R.id.btn00, R.id.btn01, R.id.btn02,
-            R.id.btn03, R.id.btn04, R.id.btn05,
-            R.id.btn06, R.id.btn07, R.id.btn08
+        R.id.btn00, R.id.btn01, R.id.btn02,
+        R.id.btn03, R.id.btn04, R.id.btn05,
+        R.id.btn06, R.id.btn07, R.id.btn08
     };
     private Button[] buttons = new Button[9];
 
@@ -33,7 +33,7 @@ public class OnePlayerActivity extends AppCompatActivity {
     private void startElements() {
 
         for (int i = 0; i < buttons.length; i++) {
-            buttons[i] = (Button) findViewById(buttonsId[i]);
+            buttons[i] = findViewById(buttonsId[i]);
         }
     }
 
@@ -55,13 +55,9 @@ public class OnePlayerActivity extends AppCompatActivity {
             player.play(movement);
 
             if (!player.won() && !playerVirtual.won()) {
-                playerVirtual.analyzeAndPlay(playerVirtual.getId());
+                playerVirtual.analyzeAndPlay(player.getTag());
             }
             fills();
-
-            if (board.gameOver()) {
-                //showResult();
-            }
         }
     }
 
@@ -79,9 +75,9 @@ public class OnePlayerActivity extends AppCompatActivity {
 
         for (int i = 0; i < buttons.length; i++) {
 
-            if (board.showPosition(i) == player.getId()) {
+            if (board.showPosition(i) == player.getTag()) {
                 print(i ,R.color.lightBlue, "X");
-            } else if (board.showPosition(i) == playerVirtual.getId()) {
+            } else if (board.showPosition(i) == playerVirtual.getTag()) {
                 print(i ,R.color.colorPlayerVirtal, "0");
             } else {
                 print(i ,R.color.colorGreen, null);

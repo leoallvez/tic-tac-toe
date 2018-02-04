@@ -6,13 +6,13 @@ package tictactoegame.com.br.code.model;
 
 public class Player {
 
-    protected int id;
+    protected int tag;
     protected String name;
     protected boolean turn;
     protected int points;
 
-    public Player (String name, int id){
-        this.id = id;
+    public Player (String name, int tag){
+        this.tag = tag;
         this.name = name;
         this.points = 0;
     }
@@ -26,7 +26,7 @@ public class Player {
     public void play(int movement){
 
         if(Board.isEmptyPosition(movement)){
-            Board.positions[movement] = id;
+            Board.positions[movement] = tag;
         }
     }
 
@@ -38,8 +38,8 @@ public class Player {
         points++;
     }
 
-    public int getId() {
-        return id;
+    public int getTag() {
+        return tag;
     }
 
     public void restartPunctuation(){
@@ -50,16 +50,16 @@ public class Player {
         int[] p = Board.positions;
              //Horizontal
         return (
-            ((p[0] == id)&&(p[1] == id)&&(p[2] == id)) ||
-            ((p[3] == id)&&(p[4] == id)&&(p[5] == id)) ||
-            ((p[6] == id)&&(p[7] == id)&&(p[8] == id)) ||
+            ((p[0] == tag)&&(p[1] == tag)&&(p[2] == tag)) ||
+            ((p[3] == tag)&&(p[4] == tag)&&(p[5] == tag)) ||
+            ((p[6] == tag)&&(p[7] == tag)&&(p[8] == tag)) ||
             //Vertical
-            ((p[0] == id)&&(p[3] == id)&&(p[6] == id)) ||
-            ((p[1] == id)&&(p[4] == id)&&(p[7] == id)) ||
-            ((p[2] == id)&&(p[5] == id)&&(p[8] == id)) ||
+            ((p[0] == tag)&&(p[3] == tag)&&(p[6] == tag)) ||
+            ((p[1] == tag)&&(p[4] == tag)&&(p[7] == tag)) ||
+            ((p[2] == tag)&&(p[5] == tag)&&(p[8] == tag)) ||
             //Diagonals
-            ((p[0] == id)&&(p[4] == id)&&(p[8] == id)) ||
-            ((p[6] == id)&&(p[4] == id)&&(p[2] == id))
+            ((p[0] == tag)&&(p[4] == tag)&&(p[8] == tag)) ||
+            ((p[6] == tag)&&(p[4] == tag)&&(p[2] == tag))
         );
     }
 }

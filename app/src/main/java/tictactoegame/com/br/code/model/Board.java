@@ -31,7 +31,7 @@ public class Board {
     public boolean isFullyPopulated() {
         int count = 0;
         for (int position : positions) {
-            if (position == playerOne.getId() || position == playerTwo.getId()) {
+            if (position == playerOne.getTag() || position == playerTwo.getTag()) {
                 count++;
             }
         }
