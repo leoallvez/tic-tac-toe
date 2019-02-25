@@ -8,11 +8,10 @@ class Board(playerOne:Player, playerTwo:Player) {
     val playerOne:Player
     val playerTwo:Player
     val isFullyPopulated:Boolean
-
         get() {
             var count = 0
             for (position in positions) {
-                if (position == playerOne.tag || position == playerTwo.tag) {
+                if (position.equals(playerOne.tag) || position.equals(playerTwo.tag)) {
                     count++
                 }
             }
@@ -20,6 +19,7 @@ class Board(playerOne:Player, playerTwo:Player) {
         }
 
     init{
+
         this.playerOne = playerOne
         this.playerTwo = playerTwo
         start()

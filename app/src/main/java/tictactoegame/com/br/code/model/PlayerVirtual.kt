@@ -31,120 +31,137 @@ class PlayerVirtual(name: String, tag: Int) : Player(name, tag) {
     }
 
     private fun canWin(tag: Int): Boolean {
-        val p = Board.positions
+
+        val positions = Board.positions
 
         //Horizontal Superior
-        if (p[0] == tag && p[1] == tag && Board.isEmptyPosition(2)) {
-            p[2] = BRAND
+        if (positions[0] == tag && positions[1] == tag && Board.isEmptyPosition(2)) {
+            positions[2] = brand
             return true
         }
-        if (p[1] == tag && p[2] == tag && Board.isEmptyPosition(0)) {
-            p[0] = BRAND
+
+        if (positions[1] == tag && positions[2] == tag && Board.isEmptyPosition(0)) {
+            positions[0] = brand
             return true
         }
-        if (p[0] == tag && p[2] == tag && Board.isEmptyPosition(1)) {
-            p[1] = BRAND
+
+        if (positions[0] == tag && positions[2] == tag && Board.isEmptyPosition(1)) {
+            positions[1] = brand
             return true
         }
 
         //Central Horizontal
-        if (p[3] == tag && p[4] == tag && Board.isEmptyPosition(5)) {
-            p[5] = BRAND
+        if (positions[3] == tag && positions[4] == tag && Board.isEmptyPosition(5)) {
+            positions[5] = brand
             return true
         }
-        if (p[4] == tag && p[5] == tag && Board.isEmptyPosition(3)) {
-            p[3] = BRAND
+
+        if (positions[4] == tag && positions[5] == tag && Board.isEmptyPosition(3)) {
+            positions[3] = brand
             return true
         }
-        if (p[3] == tag && p[5] == tag && Board.isEmptyPosition(4)) {
-            p[4] = BRAND
+
+        if (positions[3] == tag && positions[5] == tag && Board.isEmptyPosition(4)) {
+            positions[4] = brand
             return true
         }
 
         //Bottom Horizontal
-        if (p[6] == tag && p[7] == tag && Board.isEmptyPosition(8)) {
-            p[8] = BRAND
+        if (positions[6] == tag && positions[7] == tag && Board.isEmptyPosition(8)) {
+            positions[8] = brand
             return true
         }
-        if (p[7] == tag && p[8] == tag && Board.isEmptyPosition(6)) {
-            p[6] = BRAND
+
+        if (positions[7] == tag && positions[8] == tag && Board.isEmptyPosition(6)) {
+            positions[6] = brand
             return true
         }
-        if (p[6] == tag && p[8] == tag && Board.isEmptyPosition(7)) {
-            p[7] = BRAND
+
+        if (positions[6] == tag && positions[8] == tag && Board.isEmptyPosition(7)) {
+            positions[7] = brand
             return true
         }
 
         //Vertical Left
-        if (p[0] == tag && p[3] == tag && Board.isEmptyPosition(6)) {
-            p[6] = BRAND
+        if (positions[0] == tag && positions[3] == tag && Board.isEmptyPosition(6)) {
+            positions[6] = brand
             return true
         }
-        if (p[3] == tag && p[6] == tag && Board.isEmptyPosition(0)) {
-            p[0] = BRAND
+
+        if (positions[3] == tag && positions[6] == tag && Board.isEmptyPosition(0)) {
+            positions[0] = brand
             return true
         }
-        if (p[0] == tag && p[6] == tag && Board.isEmptyPosition(3)) {
-            p[3] = BRAND
+
+        if (positions[0] == tag && positions[6] == tag && Board.isEmptyPosition(3)) {
+            positions[3] = brand
             return true
         }
 
         //Vertical Central
-        if (p[1] == tag && p[4] == tag && Board.isEmptyPosition(7)) {
-            p[7] = BRAND
+        if (positions[1] == tag && positions[4] == tag && Board.isEmptyPosition(7)) {
+            positions[7] = brand
             return true
         }
-        if (p[4] == tag && p[7] == tag && Board.isEmptyPosition(1)) {
-            p[1] = BRAND
+
+        if (positions[4] == tag && positions[7] == tag && Board.isEmptyPosition(1)) {
+            positions[1] = brand
             return true
         }
-        if (p[1] == tag && p[7] == tag && Board.isEmptyPosition(4)) {
-            p[4] = BRAND
+
+        if (positions[1] == tag && positions[7] == tag && Board.isEmptyPosition(4)) {
+            positions[4] = brand
             return true
         }
 
         //Vertical Right
-        if (p[2] == tag && p[5] == tag && Board.isEmptyPosition(8)) {
-            p[8] = BRAND
+        if (positions[2] == tag && positions[5] == tag && Board.isEmptyPosition(8)) {
+            positions[8] = brand
             return true
         }
-        if (p[5] == tag && p[8] == tag && Board.isEmptyPosition(2)) {
-            p[2] = BRAND
+
+        if (positions[5] == tag && positions[8] == tag && Board.isEmptyPosition(2)) {
+            positions[2] = brand
             return true
         }
-        if (p[2] == tag && p[8] == tag && Board.isEmptyPosition(5)) {
-            p[5] = BRAND
+
+        if (positions[2] == tag && positions[8] == tag && Board.isEmptyPosition(5)) {
+            positions[5] = brand
             return true
         }
 
         //Diagonals
-        if (p[0] == tag && p[4] == tag && Board.isEmptyPosition(8)) {
-            p[8] = BRAND
-            return true
-        }
-        if (p[4] == tag && p[8] == tag && Board.isEmptyPosition(0)) {
-            p[0] = BRAND
-            return true
-        }
-        if (p[0] == tag && p[8] == tag && Board.isEmptyPosition(4)) {
-            p[4] = BRAND
+        if (positions[0] == tag && positions[4] == tag && Board.isEmptyPosition(8)) {
+            positions[8] = brand
             return true
         }
 
-        if (p[4] == tag && p[6] == tag && Board.isEmptyPosition(2)) {
-            p[2] = BRAND
-            return true
-        }
-        if (p[4] == tag && p[2] == tag && Board.isEmptyPosition(6)) {
-            p[6] = BRAND
-            return true
-        }
-        if (p[6] == tag && p[2] == tag && Board.isEmptyPosition(4)) {
-            p[4] = BRAND
+        if (positions[4] == tag && positions[8] == tag && Board.isEmptyPosition(0)) {
+            positions[0] = brand
             return true
         }
 
-        Board.positions = p
+        if (positions[0] == tag && positions[8] == tag && Board.isEmptyPosition(4)) {
+            positions[4] = brand
+            return true
+        }
+
+        if (positions[4] == tag && positions[6] == tag && Board.isEmptyPosition(2)) {
+            positions[2] = brand
+            return true
+        }
+
+        if (positions[4] == tag && positions[2] == tag && Board.isEmptyPosition(6)) {
+            positions[6] = brand
+            return true
+        }
+
+        if (positions[6] == tag && positions[2] == tag && Board.isEmptyPosition(4)) {
+            positions[4] = brand
+            return true
+        }
+
+        Board.positions = positions
 
         return false
     }
@@ -160,7 +177,6 @@ class PlayerVirtual(name: String, tag: Int) : Player(name, tag) {
     }
 
     companion object {
-
-        private val BRAND = 10
+        private val brand = 10
     }
 }
