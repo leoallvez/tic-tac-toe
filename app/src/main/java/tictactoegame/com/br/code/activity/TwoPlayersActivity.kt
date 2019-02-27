@@ -41,7 +41,7 @@ class TwoPlayersActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View) {
-        Log.d(TAG, "Inside onClick")
+        Log.d(tag, "Inside onClick")
 
         var resetButtonPressed = false
 
@@ -173,7 +173,7 @@ class TwoPlayersActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun checkWinner() {
 
-        Log.d(TAG, "Inside checkWinner")
+        Log.d(tag, "Inside checkWinner")
 
         //Horizontal --- rows
         for (i in 0..2) {
@@ -222,7 +222,7 @@ class TwoPlayersActivity : AppCompatActivity(), View.OnClickListener {
 
 
     private fun enableAllBoxes(value: Boolean) {
-        Log.d(TAG, "Inside enableAllBoxes")
+        Log.d(tag, "Inside enableAllBoxes")
         b00?.isEnabled = value
         b01?.isEnabled = value
         b02?.isEnabled = value
@@ -237,14 +237,14 @@ class TwoPlayersActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun result(winner: String) {
-        Log.d(TAG, "Inside result")
+        Log.d(tag, "Inside result")
 
         setInfo(winner)
         enableAllBoxes(false)
     }
 
     private fun resetBoard() {
-        Log.d(TAG, "Inside resetBoard")
+        Log.d(tag, "Inside resetBoard")
         b00.text = ""
         b01.text = ""
         b02.text = ""
@@ -284,6 +284,6 @@ class TwoPlayersActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
 
-        private val TAG = TwoPlayersActivity::class.java.simpleName
+        private val tag = TwoPlayersActivity::class.java.simpleName
     }
 }
