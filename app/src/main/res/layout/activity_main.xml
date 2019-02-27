@@ -20,7 +20,7 @@
         <TableRow>
 
             <Button
-                android:id="@+id/b00"
+                android:id="@+id/btn00"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:textSize="22sp"
@@ -32,7 +32,7 @@
                 />
 
             <Button
-                android:id="@+id/b01"
+                android:id="@+id/btn01"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:textSize="22sp"
@@ -44,7 +44,7 @@
                 />
 
             <Button
-                android:id="@+id/b02"
+                android:id="@+id/btn02"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:textSize="22sp"
@@ -61,7 +61,7 @@
         <TableRow>
 
             <Button
-                android:id="@+id/b10"
+                android:id="@+id/btn03"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:textSize="22sp"
@@ -73,7 +73,7 @@
                 />
 
             <Button
-                android:id="@+id/b11"
+                android:id="@+id/btn04"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:textSize="22sp"
@@ -85,7 +85,7 @@
                 />
 
             <Button
-                android:id="@+id/b12"
+                android:id="@+id/btn05"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:textSize="22sp"
@@ -102,7 +102,7 @@
         <TableRow>
 
             <Button
-                android:id="@+id/b20"
+                android:id="@+id/btn06"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:textSize="22sp"
@@ -114,7 +114,7 @@
                 />
 
             <Button
-                android:id="@+id/b21"
+                android:id="@+id/btn07"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:textSize="22sp"
@@ -126,7 +126,7 @@
                 />
 
             <Button
-                android:id="@+id/b22"
+                android:id="@+id/btn08"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:textSize="22sp"
@@ -155,7 +155,7 @@
 
     <!--Button to reset game board-->
     <Button
-        android:id="@+id/bReset"
+        android:id="@+id/btnReset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/glGameBoard"
