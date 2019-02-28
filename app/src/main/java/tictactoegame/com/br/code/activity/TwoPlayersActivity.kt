@@ -39,10 +39,7 @@ class TwoPlayersActivity : AppCompatActivity(), View.OnClickListener {
         btn.isEnabled = false
     }
 
-    //TODO: Parei nessa refatoração;
     override fun onClick(view: View) {
-
-        var resetButtonPressed = false
 
         when (view.id) {
             R.id.btn00 -> setButton(0, 0, btn00)
@@ -57,32 +54,29 @@ class TwoPlayersActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn07 -> setButton(2, 1, btn07)
             R.id.btn08 -> setButton(2, 2, btn08)
 
-            R.id.btnReset -> resetButtonPressed = true
+            R.id.btnReset -> {
+                resetBoard()
+                return
+            }
         }
 
-        if (resetButtonPressed) {
-            resetBoard()
+        turnCount++
+        playerX = playerX.not()
+
+        if (playerX) {
+            setInfo("Player X turn")
         } else {
-            turnCount++
-            playerX = !playerX
-
-            if (playerX) {
-                setInfo("Player X turn")
-            } else {
-                setInfo("Player 0 turn")
-            }
-
-            if (turnCount == 9) {
-                result("Game Draw")
-            }
-
-            checkWinner()
+            setInfo("Player 0 turn")
         }
+
+        if (turnCount.equals(9)) {
+            result("Game Draw")
+        }
+
+        checkWinner()
     }
 
     private fun checkWinner() {
-
-        Log.d(tag, "Inside checkWinner")
 
         //Horizontal --- rows
         for (i in 0..2) {
@@ -161,7 +155,7 @@ class TwoPlayersActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setInfo(text: String) {
-        //tvInfo.text = text
+        tvInfo.text = text
     }
 
     private fun initializeBoardStatus() {

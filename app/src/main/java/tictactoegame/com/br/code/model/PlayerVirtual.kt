@@ -18,7 +18,7 @@ class PlayerVirtual(name: String, tag: Int) : Player(name, tag) {
         var higherNumberPosition = 0
 
         for (i in 0 until Board.positions.size) {
-            if (Board.positions[i] > higherNumber && Board.isEmptyPosition(i)) {
+            if ((Board.positions[i] > higherNumber).and(Board.isEmptyPosition(i))) {
                 higherNumber = Board.positions[i]
                 higherNumberPosition = i
             }
@@ -34,100 +34,54 @@ class PlayerVirtual(name: String, tag: Int) : Player(name, tag) {
 
         val positions = Board.positions
 
-        //Horizontal Superior
-        if (positions[0] == tag && positions[1] == tag && Board.isEmptyPosition(2)) {
-            positions[2] = brand
-            return true
+        /**
+         * 0 | 1 | 2
+         * 3 | 4 | 5
+         * 6 | 7 | 8
+         */
+
+        //Horizontal --- rows
+        for (i in 0..6 step 3) {
+            if (positions[i] == tag && positions[i+1] == tag && Board.isEmptyPosition(i+2)) {
+                positions[i+2] = brand
+                return true
+            }
         }
 
-        if (positions[1] == tag && positions[2] == tag && Board.isEmptyPosition(0)) {
-            positions[0] = brand
-            return true
+        for (i in 0..6 step 3) {
+            if (positions[i] == tag && positions[i+2] == tag && Board.isEmptyPosition(i+1)) {
+                positions[i+1] = brand
+                return true
+            }
         }
 
-        if (positions[0] == tag && positions[2] == tag && Board.isEmptyPosition(1)) {
-            positions[1] = brand
-            return true
+        for (i in 0..6 step 3) {
+            if (positions[i+1] == tag && positions[i+2] == tag && Board.isEmptyPosition(i)) {
+                positions[i] = brand
+                return true
+            }
         }
 
-        //Central Horizontal
-        if (positions[3] == tag && positions[4] == tag && Board.isEmptyPosition(5)) {
-            positions[5] = brand
-            return true
+        //Horizontal --- rows
+        for (i in 0..2) {
+            if (positions[i] == tag && positions[i+3] == tag && Board.isEmptyPosition(i+6)) {
+                positions[i+6] = brand
+                return true
+            }
         }
 
-        if (positions[4] == tag && positions[5] == tag && Board.isEmptyPosition(3)) {
-            positions[3] = brand
-            return true
+        for (i in 0..2) {
+            if (positions[i+6] == tag && positions[i+3] == tag && Board.isEmptyPosition(i)) {
+                positions[i+6] = brand
+                return true
+            }
         }
 
-        if (positions[3] == tag && positions[5] == tag && Board.isEmptyPosition(4)) {
-            positions[4] = brand
-            return true
-        }
-
-        //Bottom Horizontal
-        if (positions[6] == tag && positions[7] == tag && Board.isEmptyPosition(8)) {
-            positions[8] = brand
-            return true
-        }
-
-        if (positions[7] == tag && positions[8] == tag && Board.isEmptyPosition(6)) {
-            positions[6] = brand
-            return true
-        }
-
-        if (positions[6] == tag && positions[8] == tag && Board.isEmptyPosition(7)) {
-            positions[7] = brand
-            return true
-        }
-
-        //Vertical Left
-        if (positions[0] == tag && positions[3] == tag && Board.isEmptyPosition(6)) {
-            positions[6] = brand
-            return true
-        }
-
-        if (positions[3] == tag && positions[6] == tag && Board.isEmptyPosition(0)) {
-            positions[0] = brand
-            return true
-        }
-
-        if (positions[0] == tag && positions[6] == tag && Board.isEmptyPosition(3)) {
-            positions[3] = brand
-            return true
-        }
-
-        //Vertical Central
-        if (positions[1] == tag && positions[4] == tag && Board.isEmptyPosition(7)) {
-            positions[7] = brand
-            return true
-        }
-
-        if (positions[4] == tag && positions[7] == tag && Board.isEmptyPosition(1)) {
-            positions[1] = brand
-            return true
-        }
-
-        if (positions[1] == tag && positions[7] == tag && Board.isEmptyPosition(4)) {
-            positions[4] = brand
-            return true
-        }
-
-        //Vertical Right
-        if (positions[2] == tag && positions[5] == tag && Board.isEmptyPosition(8)) {
-            positions[8] = brand
-            return true
-        }
-
-        if (positions[5] == tag && positions[8] == tag && Board.isEmptyPosition(2)) {
-            positions[2] = brand
-            return true
-        }
-
-        if (positions[2] == tag && positions[8] == tag && Board.isEmptyPosition(5)) {
-            positions[5] = brand
-            return true
+        for (i in 0..2) {
+            if (positions[i] == tag && positions[i+6] == tag && Board.isEmptyPosition(i+3)) {
+                positions[i+3] = brand
+                return true
+            }
         }
 
         //Diagonals
@@ -167,13 +121,8 @@ class PlayerVirtual(name: String, tag: Int) : Player(name, tag) {
     }
 
     fun analyzeAndPlay(opponentTag: Int) {
-        if (canWin(tag)) {
-            play()
-        } else if (canWin(opponentTag)) {
-            play()
-        } else {
-            play()
-        }
+        if (canWin(tag).not()) { canWin(opponentTag) }
+        play()
     }
 
     companion object {
