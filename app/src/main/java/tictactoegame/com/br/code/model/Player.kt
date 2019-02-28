@@ -3,12 +3,11 @@ package tictactoegame.com.br.code.model
  * Created by Leonardo on 25/01/2019.
  */
 open class Player(name:String, tag:Int) {
+
     var tag  = 0
-    var name:String
+    var name: String
     var turn = false
-        protected set
     var points:Int = 0
-        protected set
 
     init{
         this.tag = tag
@@ -33,17 +32,17 @@ open class Player(name:String, tag:Int) {
     }
 
     fun won():Boolean {
-        val p = Board.positions
+        val positions = Board.positions
         //Horizontal
-        return ((((p[0] == tag) && (p[1] == tag) && (p[2] == tag)) ||
-                ((p[3] == tag) && (p[4] == tag) && (p[5] == tag)) ||
-                ((p[6] == tag) && (p[7] == tag) && (p[8] == tag)) ||
+        return ((((positions[0] == tag) && (positions[1] == tag) && (positions[2] == tag)) ||
+                ((positions[3] == tag) && (positions[4] == tag) && (positions[5] == tag)) ||
+                ((positions[6] == tag) && (positions[7] == tag) && (positions[8] == tag)) ||
                 //Vertical
-                ((p[0] == tag) && (p[3] == tag) && (p[6] == tag)) ||
-                ((p[1] == tag) && (p[4] == tag) && (p[7] == tag)) ||
-                ((p[2] == tag) && (p[5] == tag) && (p[8] == tag)) ||
+                ((positions[0] == tag) && (positions[3] == tag) && (positions[6] == tag)) ||
+                ((positions[1] == tag) && (positions[4] == tag) && (positions[7] == tag)) ||
+                ((positions[2] == tag) && (positions[5] == tag) && (positions[8] == tag)) ||
                 //Diagonals
-                ((p[0] == tag) && (p[4] == tag) && (p[8] == tag)) ||
-                ((p[6] == tag) && (p[4] == tag) && (p[2] == tag))))
+                ((positions[0] == tag) && (positions[4] == tag) && (positions[8] == tag)) ||
+                ((positions[6] == tag) && (positions[4] == tag) && (positions[2] == tag))))
     }
 }

@@ -3,41 +3,32 @@ package tictactoegame.com.br.code.model
 /*
  Created by Leonardo on 25/01/2019.
 */
-class Board(playerOne:Player, playerTwo:Player) {
 
-    val playerOne:Player
-    val playerTwo:Player
-    val isFullyPopulated:Boolean
+class Board(private val playerOne :Player, private val playerTwo :Player) {
 
-        get() {
-            var count = 0
-            for (position in positions) {
-                if (position == playerOne.tag || position == playerTwo.tag) {
-                    count++
-                }
-            }
-            return count == Board.positions.size
-        }
-
-    init{
-        this.playerOne = playerOne
-        this.playerTwo = playerTwo
-        start()
-    }
+    init{start()}
 
     fun start() {
         positions = intArrayOf(3, 2, 3, 2, 4, 2, 3, 2, 3)
     }
 
-    fun showPosition(movement:Int):Int {
-        return positions[movement]
+    fun isFullyPopulated(): Boolean {
+        var count = 0
+        for (position in positions) {
+            if (position.equals(playerOne.tag).or(position.equals(playerTwo.tag))) {
+                count++
+            }
+        }
+        return count.equals(Board.positions.size)
     }
 
-    fun gameOver()= isFullyPopulated || playerOne.won() || playerTwo.won()
+    fun gameOver()= isFullyPopulated().or(playerOne.won()).or(playerTwo.won())
+
+    fun showPosition(i: Int)= positions[i]
 
     companion object {
         var positions = IntArray(9)
         val minimum = 2
-        fun isEmptyPosition(movement:Int)= positions[movement] >= minimum
+        fun isEmptyPosition(i: Int)= positions[i] >= minimum
     }
 }
