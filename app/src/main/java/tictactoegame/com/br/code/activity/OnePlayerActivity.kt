@@ -10,17 +10,17 @@ import kotlinx.android.synthetic.main.activity_one_player.*
 
 class OnePlayerActivity : AppCompatActivity() {
 
-    protected var board: Board? = null
-    protected var player = Player("You", 1)
-    protected var playerVirtual = PlayerVirtual("Machine", 0)
-    val buttons: Array<Button> = arrayOf (btn00, btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08)
+    val player = Player()
+    val playerVirtual = PlayerVirtual()
+    val board = Board(playerVirtual, player)
+    var buttons: Array<Button>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_one_player)
 
-        board = Board(playerVirtual, player)
-        board?.start()
+        buttons = arrayOf (btn00, btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08)
+        board.start()
     }
 
     fun onClick(view: View) {
@@ -29,7 +29,7 @@ class OnePlayerActivity : AppCompatActivity() {
 
     fun played(movement: Int) {
 
-        if (Board.isEmptyPosition(movement).and(board!!.gameOver().not())) {
+        if (Board.isEmptyPosition(movement).and(board.gameOver().not())) {
 
             player.play(movement)
 
@@ -41,13 +41,13 @@ class OnePlayerActivity : AppCompatActivity() {
                     playerVirtual.toScore()
                 }
             }
-            points?.text = "Me: ${player.points}, Machine: ${playerVirtual.points}"
+            points.text = "Me: ${player.points}, Machine: ${playerVirtual.points}"
             fills()
         }
     }
 
     fun newGame(view: View) {
-        board?.start()
+        board.start()
         player.turnChange()
 
         if (player.turn.not()) playerVirtual.randomPlay()
@@ -56,9 +56,9 @@ class OnePlayerActivity : AppCompatActivity() {
 
     private fun fills() {
 
-        for (i in buttons.indices) {
+        for (i in buttons?.indices!!) {
 
-            when(board?.showPosition(i)) {
+            when(board.showPosition(i)) {
                 player.tag -> print(i, R.color.lightBlue, "X")
                 playerVirtual.tag -> print(i, R.color.colorPlayerVirtal, "0")
                 else -> print(i, R.color.colorGreen, null)
@@ -67,7 +67,7 @@ class OnePlayerActivity : AppCompatActivity() {
     }
 
     private fun print(position: Int, color: Int, symbol: String?) {
-        buttons[position]?.setBackgroundColor(resources.getColor(color))
-        buttons[position]?.setText(symbol)
+        buttons?.get(position)?.setBackgroundColor(resources.getColor(color))
+        buttons?.get(position)?.setText(symbol)
     }
 }

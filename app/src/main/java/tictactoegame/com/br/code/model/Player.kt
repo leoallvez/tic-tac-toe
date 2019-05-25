@@ -2,18 +2,10 @@ package tictactoegame.com.br.code.model
 /**
  * Created by Leonardo on 25/01/2019.
  */
-open class Player(name: String, tag: Int) {
+open class Player(val name: String = "You", val tag: Int = 1) {
 
-    var tag  = 0
-    var name: String
     var turn = false
     var points = 0
-
-    init{
-        this.tag = tag
-        this.name = name
-        this.points = 0
-    }
 
     fun turnChange() {
         turn = turn.not()
@@ -29,7 +21,7 @@ open class Player(name: String, tag: Int) {
 
     fun won(): Boolean {
 
-        val pos = Board.positions
+        val pos= Board.positions
         //Horizontal
         for(i in 0..6 step 3) {
             if(pos[i].equals(tag).and(pos[i+1].equals(tag)).and(pos[i+2].equals(tag))) return true

@@ -29,6 +29,6 @@ class Board(private val playerOne :Player, private val playerTwo :Player) {
     companion object {
         var positions = IntArray(9)
         val minimum = 2
-        fun isEmptyPosition(i: Int)= positions[i] >= minimum
+        fun isEmptyPosition(i: Int) = positions[i] >= minimum
     }
 }

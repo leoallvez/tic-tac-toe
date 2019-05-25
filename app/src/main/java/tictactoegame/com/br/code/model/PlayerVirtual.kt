@@ -6,11 +6,7 @@ import java.util.*
  * Created by Leonardo on 25/01/2019.
  */
 
-class PlayerVirtual(name: String, tag: Int) : Player(name, tag) {
-
-    init {
-        turn = false
-    }
+class PlayerVirtual(name: String = "Machine", tag: Int = 0) : Player(name, tag) {
 
     private fun play() {
 
@@ -46,16 +42,12 @@ class PlayerVirtual(name: String, tag: Int) : Player(name, tag) {
                 positions[i+2] = brand
                 return true
             }
-        }
 
-        for (i in 0..6 step 3) {
             if (positions[i] == tag && positions[i+2] == tag && Board.isEmptyPosition(i+1)) {
                 positions[i+1] = brand
                 return true
             }
-        }
 
-        for (i in 0..6 step 3) {
             if (positions[i+1] == tag && positions[i+2] == tag && Board.isEmptyPosition(i)) {
                 positions[i] = brand
                 return true
@@ -68,16 +60,12 @@ class PlayerVirtual(name: String, tag: Int) : Player(name, tag) {
                 positions[i+6] = brand
                 return true
             }
-        }
 
-        for (i in 0..2) {
             if (positions[i+6] == tag && positions[i+3] == tag && Board.isEmptyPosition(i)) {
                 positions[i+6] = brand
                 return true
             }
-        }
 
-        for (i in 0..2) {
             if (positions[i] == tag && positions[i+6] == tag && Board.isEmptyPosition(i+3)) {
                 positions[i+3] = brand
                 return true
