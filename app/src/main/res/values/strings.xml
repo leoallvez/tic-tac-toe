@@ -2,6 +2,4 @@
     <string name="app_name">tictactoe</string>
     <string name="text_start">Start</string>
     <string name="text_reset">Reset</string>
-    <string name="text_one_player">One Player</string>
-    <string name="text_two_players">Two Player</string>
 </resources>

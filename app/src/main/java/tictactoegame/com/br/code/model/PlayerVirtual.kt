@@ -14,7 +14,7 @@ class PlayerVirtual(name: String = "Machine", tag: Int = 0) : Player(name, tag) 
         var higherNumberPosition = 0
 
 
-        for (i in 0..Board.positions.size) {
+        for(i in 0 until Board.positions.size - 1) {
             if ((Board.positions[i] > higherNumber).and(Board.isEmptyPosition(i))) {
                 higherNumber = Board.positions[i]
                 higherNumberPosition = i

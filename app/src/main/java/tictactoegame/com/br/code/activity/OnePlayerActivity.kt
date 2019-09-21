@@ -19,12 +19,12 @@ class OnePlayerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_one_player)
 
-        buttons = arrayOf (btn00, btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08)
+        var buttons = arrayOf(btn00, btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08)
+        buttons.forEach{ it ->
+            it.setOnClickListener{ played(it.tag.toString().toInt()) }
+        }
+        this.buttons = buttons
         board.start()
-    }
-
-    fun onClick(view: View) {
-        played(view.tag.toString().toInt())
     }
 
     fun played(movement: Int) {
