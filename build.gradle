@@ -10,7 +10,7 @@ buildscript {
     }
     dependencies {
         //Versão do plugin do gradle
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.4.1'
         //Configuração do Kotlin nos projetos
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong

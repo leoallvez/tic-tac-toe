@@ -13,7 +13,8 @@ class PlayerVirtual(name: String = "Machine", tag: Int = 0) : Player(name, tag) 
         var higherNumber = 0
         var higherNumberPosition = 0
 
-        for (i in 0 until Board.positions.size) {
+
+        for (i in 0..Board.positions.size) {
             if ((Board.positions[i] > higherNumber).and(Board.isEmptyPosition(i))) {
                 higherNumber = Board.positions[i]
                 higherNumberPosition = i
@@ -22,7 +23,7 @@ class PlayerVirtual(name: String = "Machine", tag: Int = 0) : Player(name, tag) 
         Board.positions[higherNumberPosition] = tag
     }
 
-    fun randomPlay() {
+    fun randomPlay(){
         Board.positions[Random().nextInt(Board.positions.size)] = tag
     }
 
