@@ -32,13 +32,14 @@ class OnePlayerActivity : AppCompatActivity() {
         if (Board.isEmptyPosition(movement).and(board.gameOver().not())) {
 
             player.play(movement)
-
-            if (player.won()) {
-                player.toScore()
-            } else if (!playerVirtual.won()) {
-                playerVirtual.analyzeAndPlay(player.tag)
-                if (playerVirtual.won()) {
-                    playerVirtual.toScore()
+            if(board.gameOver().not()) {
+                if (player.won()) {
+                    player.toScore()
+                } else if (!playerVirtual.won()) {
+                    playerVirtual.analyzeAndPlay(player.tag)
+                    if (playerVirtual.won()) {
+                        playerVirtual.toScore()
+                    }
                 }
             }
             points.text = "Me: ${player.points}, Machine: ${playerVirtual.points}"
