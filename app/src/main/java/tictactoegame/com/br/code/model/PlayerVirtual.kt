@@ -14,7 +14,7 @@ class PlayerVirtual(name: String = "Machine", tag: Int = 0) : Player(name, tag) 
         var higherNumberPosition = 0
 
 
-        for(i in 0 until Board.positions.size - 1) {
+        for(i in 0 until Board.positions.count()) {
             if ((Board.positions[i] > higherNumber).and(Board.isEmptyPosition(i))) {
                 higherNumber = Board.positions[i]
                 higherNumberPosition = i
@@ -55,7 +55,7 @@ class PlayerVirtual(name: String = "Machine", tag: Int = 0) : Player(name, tag) 
             }
         }
 
-        //Horizontal --- rows
+        //Vertical --- rows
         for (i in 0..2) {
             if (positions[i] == tag && positions[i+3] == tag && Board.isEmptyPosition(i+6)) {
                 positions[i+6] = brand
@@ -63,7 +63,7 @@ class PlayerVirtual(name: String = "Machine", tag: Int = 0) : Player(name, tag) 
             }
 
             if (positions[i+6] == tag && positions[i+3] == tag && Board.isEmptyPosition(i)) {
-                positions[i+6] = brand
+                positions[i] = brand
                 return true
             }
 
