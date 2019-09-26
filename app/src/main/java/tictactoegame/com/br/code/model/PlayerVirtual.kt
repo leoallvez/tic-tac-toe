@@ -27,7 +27,7 @@ class PlayerVirtual(name: String = "Machine", tag: Int = 0) : Player(name, tag) 
         Board.positions[Random().nextInt(Board.positions.size)] = tag
     }
 
-    private fun canWin(tag: Int): Boolean {
+    private fun canWin(tag: Int, isOpponent: Boolean = true): Boolean {
 
         val positions = Board.positions
 
@@ -73,6 +73,29 @@ class PlayerVirtual(name: String = "Machine", tag: Int = 0) : Player(name, tag) 
             }
         }
 
+        if(isOpponent) {
+
+            if (positions[0] == tag && Board.isEmptyPosition(4) && Board.isEmptyPosition(8)) {
+                positions[8] = brand
+                return true
+            }
+
+            if (positions[8] == tag && Board.isEmptyPosition(4) && Board.isEmptyPosition(0)) {
+                positions[0] = brand
+                return true
+            }
+
+            if (positions[6] == tag && Board.isEmptyPosition(4) && Board.isEmptyPosition(2)) {
+                positions[2] = brand
+                return true
+            }
+
+            if (positions[2] == tag && Board.isEmptyPosition(4) && Board.isEmptyPosition(6)) {
+                positions[6] = brand
+                return true
+            }
+        }
+
         //Diagonals
         if (positions[0] == tag && positions[4] == tag && Board.isEmptyPosition(8)) {
             positions[8] = brand
@@ -110,7 +133,7 @@ class PlayerVirtual(name: String = "Machine", tag: Int = 0) : Player(name, tag) 
     }
 
     fun analyzeAndPlay(opponentTag: Int) {
-        if (canWin(tag).not()) { canWin(opponentTag) }
+        if (canWin(tag).not()) { canWin(opponentTag, true) }
         play()
     }
 
