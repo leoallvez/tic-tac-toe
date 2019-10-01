@@ -17,8 +17,4 @@ class FirstScreenActivity : AppCompatActivity() {
     fun startOnePlayer(v: View) {
         startActivity(Intent(this, OnePlayerActivity::class.java))
     }
-
-    fun startTwoPlayers(v: View) {
-        startActivity(Intent(this, TwoPlayersActivity::class.java))
-    }
 }

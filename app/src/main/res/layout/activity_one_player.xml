@@ -38,7 +38,6 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 style="@style/Widget.AppCompat.Button"
-                android:onClick="onClick"
                 android:tag="0"
                 />
 
@@ -52,7 +51,6 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 style="@style/Widget.AppCompat.Button"
-                android:onClick="onClick"
                 android:tag="1"
                 />
 
@@ -66,7 +64,6 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 style="@style/Widget.AppCompat.Button"
-                android:onClick="onClick"
                 android:tag="2"
                 />
 
@@ -85,7 +82,6 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 style="@style/Widget.AppCompat.Button"
-                android:onClick="onClick"
                 android:tag="3"
                 />
 
@@ -99,7 +95,6 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 style="@style/Widget.AppCompat.Button"
-                android:onClick="onClick"
                 android:tag="4"
                 />
 
@@ -113,7 +108,6 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 style="@style/Widget.AppCompat.Button"
-                android:onClick="onClick"
                 android:tag="5"
                 />
 
@@ -132,7 +126,6 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 style="@style/Widget.AppCompat.Button"
-                android:onClick="onClick"
                 android:tag="6"
                 />
 
@@ -146,7 +139,6 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 style="@style/Widget.AppCompat.Button"
-                android:onClick="onClick"
                 android:tag="7"
                 />
 
@@ -160,12 +152,9 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 style="@style/Widget.AppCompat.Button"
-                android:onClick="onClick"
                 android:tag="8"
                 />
-
         </TableRow>
-
     </TableLayout>
 
     <!--TextView to show user turns and winner-->

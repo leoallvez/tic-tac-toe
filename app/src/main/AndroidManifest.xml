@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.OnePlayerActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity android:name=".activity.TwoPlayersActivity"
                   android:screenOrientation="portrait" >
         </activity>
         <activity android:name=".activity.FirstScreenActivity"

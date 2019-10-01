@@ -2,21 +2,18 @@ package tictactoegame.com.br.code.model
 /**
  * Created by Leonardo on 25/01/2019.
  */
-open class Player(name:String, tag:Int) {
+open class Player(val name: String = "You", val tag: Int = 1) {
 
-    var tag  = 0
-    var name: String
-    var turn = false
-    var points:Int = 0
+    var turn: Boolean
+    var points: Int
 
     init{
-        this.tag = tag
-        this.name = name
-        this.points = 0
+        turn = false
+        points = 0
     }
 
     fun turnChange() {
-        turn = !turn
+        turn = turn.not()
     }
 
     fun play(movement:Int) {
@@ -25,24 +22,21 @@ open class Player(name:String, tag:Int) {
         }
     }
 
-    fun toScore() { points++ }
+    fun toScore() { points++}
 
-    fun restartPunctuation() {
-        points = 0
-    }
+    fun won(): Boolean {
 
-    fun won():Boolean {
-        val positions = Board.positions
+        val pos= Board.positions
         //Horizontal
-        return ((((positions[0] == tag) && (positions[1] == tag) && (positions[2] == tag)) ||
-                ((positions[3] == tag) && (positions[4] == tag) && (positions[5] == tag)) ||
-                ((positions[6] == tag) && (positions[7] == tag) && (positions[8] == tag)) ||
-                //Vertical
-                ((positions[0] == tag) && (positions[3] == tag) && (positions[6] == tag)) ||
-                ((positions[1] == tag) && (positions[4] == tag) && (positions[7] == tag)) ||
-                ((positions[2] == tag) && (positions[5] == tag) && (positions[8] == tag)) ||
-                //Diagonals
-                ((positions[0] == tag) && (positions[4] == tag) && (positions[8] == tag)) ||
-                ((positions[6] == tag) && (positions[4] == tag) && (positions[2] == tag))))
+        for(i in 0..6 step 3) {
+            if(pos[i].equals(tag).and(pos[i+1].equals(tag)).and(pos[i+2].equals(tag))) return true
+        }
+        //Vertical
+        for(i in 0..2) {
+            if(pos[i].equals(tag).and(pos[i+3].equals(tag)).and(pos[i+6].equals(tag))) return true
+        }
+        //Diagonal
+        return (pos[0].equals(tag)).and((pos[4].equals(tag))).and(pos[8].equals(tag))
+                .or((pos[6].equals(tag)).and(pos[4].equals(tag)).and(pos[2].equals(tag)))
     }
 }
