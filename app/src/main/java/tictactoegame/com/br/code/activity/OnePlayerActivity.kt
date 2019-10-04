@@ -1,18 +1,19 @@
 package tictactoegame.com.br.code.activity
 
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import tictactoegame.com.br.code.R
-import tictactoegame.com.br.code.model.*
 import android.support.v7.app.AppCompatActivity
+import android.widget.Button
 import kotlinx.android.synthetic.main.activity_one_player.*
+import tictactoegame.com.br.code.R
+import tictactoegame.com.br.code.model.Board
+import tictactoegame.com.br.code.model.Player
+import tictactoegame.com.br.code.model.PlayerVirtual
 
 class OnePlayerActivity : AppCompatActivity() {
 
-    val player = Player()
-    val playerVirtual = PlayerVirtual()
-    val board = Board(playerVirtual, player)
+    private val player = Player()
+    private val playerVirtual = PlayerVirtual()
+    private val board = Board(playerVirtual, player)
     var buttons: Array<Button>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +26,10 @@ class OnePlayerActivity : AppCompatActivity() {
         }
         this.buttons = buttons
         board.start()
+        bReset.setOnClickListener{
+            newGame()
+        }
+        newGame()
     }
 
     fun played(movement: Int) {
@@ -32,10 +37,9 @@ class OnePlayerActivity : AppCompatActivity() {
         if (Board.isEmptyPosition(movement).and(board.gameOver().not())) {
 
             player.play(movement)
-            if(board.gameOver().not()) {
-                if (player.won()) {
-                    player.toScore()
-                } else if (!playerVirtual.won()) {
+            if (player.won()) { player.toScore() }
+            if (board.gameOver().not()) {
+                if (!playerVirtual.won()) {
                     playerVirtual.analyzeAndPlay(player.tag)
                     if (playerVirtual.won()) {
                         playerVirtual.toScore()
@@ -47,11 +51,11 @@ class OnePlayerActivity : AppCompatActivity() {
         }
     }
 
-    fun newGame(view: View) {
+    private fun newGame() {
         board.start()
-        player.turnChange()
-
-        if (player.turn.not()) playerVirtual.randomPlay()
+        //player.turnChange()
+        //if (player.turn.not()) playerVirtual.randomPlay()
+        playerVirtual.randomPlay()
         fills()
     }
 
