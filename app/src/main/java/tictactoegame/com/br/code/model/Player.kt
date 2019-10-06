@@ -4,13 +4,8 @@ package tictactoegame.com.br.code.model
  */
 open class Player(val name: String = "You", val tag: Int = 1) {
 
-    var turn: Boolean
-    var points: Int
-
-    init{
-        turn = false
-        points = 0
-    }
+    var turn: Boolean = false
+    var points: Int = 0
 
     fun turnChange() {
         turn = turn.not()
@@ -22,7 +17,7 @@ open class Player(val name: String = "You", val tag: Int = 1) {
         }
     }
 
-    fun toScore() { points++}
+    fun toScore() { points++ }
 
     fun won(): Boolean {
 

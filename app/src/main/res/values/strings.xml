@@ -2,4 +2,5 @@
     <string name="app_name">tictactoe</string>
     <string name="text_start">Start</string>
     <string name="text_reset">Reset</string>
+    <string name="score">Eu: %1$d, Maquina: %2$d.</string>
 </resources>
