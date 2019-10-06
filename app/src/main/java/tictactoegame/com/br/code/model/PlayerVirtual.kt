@@ -14,13 +14,13 @@ class PlayerVirtual(name: String = "Machine", tag: Int = 0) : Player(name, tag) 
         var higherNumber = 0
         var higherNumberPosition = 0
 
-
-        for(i in 0 until positions.count()) {
-            if ((positions[i] > higherNumber).and(Board.isEmptyPosition(i))) {
-                higherNumber = positions[i]
-                higherNumberPosition = i
+        positions.forEachIndexed { index, element ->
+            if ((element > higherNumber).and(Board.isEmptyPosition(index))) {
+                higherNumber = element
+                higherNumberPosition = index
             }
         }
+
         positions[higherNumberPosition] = tag
     }
 
@@ -29,6 +29,7 @@ class PlayerVirtual(name: String = "Machine", tag: Int = 0) : Player(name, tag) 
     }
 
     private fun canWin(tagOpponent: Int) = when(true) {
+
         rule1(tagOpponent) -> true
         rule2()            -> true
         rule2()            -> true
