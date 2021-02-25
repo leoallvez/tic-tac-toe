@@ -21,7 +21,7 @@ open class Player(val name: String = "You", val tag: Int = 1) {
 
     fun won(): Boolean {
 
-        val pos= Board.positions
+        val pos = Board.positions
         //Horizontal
         for(i in 0..6 step 3) {
             if(pos[i].equals(tag).and(pos[i+1].equals(tag)).and(pos[i+2].equals(tag))) return true

@@ -1,36 +1,45 @@
 package tictactoegame.com.br.code.model
 
-import tictactoegame.com.br.code.model.Board.*
-
-/*
- Created by Leonardo on 25/01/2019.
-*/
+import tictactoegame.com.br.code.Seed
 
 class Board(private val playerOne :Player, private val playerTwo :Player) {
 
-    init{start()}
+    var cells = Array(ROW) { row ->
+        Array(COLUMN) { column ->
+            Cell(row, column)
+        }
+    }
 
     fun start() {
-        positions = intArrayOf(3, 2, 3, 2, 4, 2, 3, 2, 3)
+        cells = Array(ROW) { row ->
+            Array(ROW) { column ->
+                Cell(row, column)
+            }
+        }
     }
 
     private fun isFullyPopulated(): Boolean {
-        var count = 0
-        for (position in positions) {
-            if (position.equals(playerOne.tag).or(position.equals(playerTwo.tag))) {
-                count++
+        for(row in 0 until ROW) {
+            for(column in 0 until COLUMN) {
+                val isEmpty = cells[row][column].content == Seed.EMPTY
+                if(isEmpty) {
+                    return false
+                }
             }
         }
-        return count.equals(positions.size)
+        return true
     }
 
-    fun gameOver()= isFullyPopulated().or(playerOne.won()).or(playerTwo.won())
+    fun gameOver() = isFullyPopulated().or(playerOne.won()).or(playerTwo.won())
 
-    fun showPosition(i: Int)= positions[i]
+    //fun showPosition(i: Int) = positions[i]
+
+    fun isEmptyPosition(row: Int, column: Int): Boolean {
+        return cells[row][column].content == Seed.EMPTY
+    }
 
     companion object {
-        var positions = IntArray(9)
-        private const val minimum = 2
-        fun isEmptyPosition(i: Int) = positions[i] >= minimum
+        const val ROW = 3
+        const val COLUMN = 3
     }
 }
