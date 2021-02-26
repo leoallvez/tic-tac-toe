@@ -1,8 +1,13 @@
 package tictactoegame.com.br.code.model
-/**
- * Created by Leonardo on 25/01/2019.
- */
-open class Player(val name: String = "You", val tag: Int = 1) {
+
+import tictactoegame.com.br.code.Seed
+import tictactoegame.com.br.code.model.Board.COLUMN
+import tictactoegame.com.br.code.model.Board.ROW
+import tictactoegame.com.br.code.model.Board.TABLE_LENGHT
+
+open class Player(val seed: Seed) {
+
+    private val board: Board = Board
 
     var turn: Boolean = false
     var points: Int = 0
@@ -11,27 +16,68 @@ open class Player(val name: String = "You", val tag: Int = 1) {
         turn = turn.not()
     }
 
-    fun play(movement:Int) {
-        if (Board.isEmptyPosition(movement)) {
-            Board.positions[movement] = tag
+    fun play(row: Int, column: Int) {
+        if (board.isEmptyPosition(row, column)) {
+            board.cells[row][column].content = seed
         }
     }
 
-    fun toScore() { points++ }
+    fun toScore() {
+        points++
+    }
 
-    fun won(): Boolean {
+    fun won() = wonOnHorizontal() || wonOnVertical() || wonOnDiagonal()
 
-        val pos = Board.positions
-        //Horizontal
-        for(i in 0..6 step 3) {
-            if(pos[i].equals(tag).and(pos[i+1].equals(tag)).and(pos[i+2].equals(tag))) return true
+    private fun wonOnHorizontal(): Boolean {
+        var rowCells: List<Cell>
+        for(row in 0 until ROW) {
+            rowCells = board.cells[row].toList().filter { it.content == seed }
+            if(rowCells.size == ROW) {
+                return true
+            }
         }
-        //Vertical
-        for(i in 0..2) {
-            if(pos[i].equals(tag).and(pos[i+3].equals(tag)).and(pos[i+6].equals(tag))) return true
+        return false
+    }
+
+    private fun wonOnVertical(): Boolean {
+        for(col in 0 until COLUMN) {
+            var columnCells = mutableListOf<Cell>()
+            for(row in 0 until ROW) {
+                val cell = board.cells[row][col]
+                columnCells.add(cell)
+            }
+            columnCells = columnCells.filter { it.content == seed }.toMutableList()
+            if (columnCells.size == COLUMN) {
+                return true
+            }
         }
-        //Diagonal
-        return (pos[0].equals(tag)).and((pos[4].equals(tag))).and(pos[8].equals(tag))
-                .or((pos[6].equals(tag)).and(pos[4].equals(tag)).and(pos[2].equals(tag)))
+        return false
+    }
+
+    private fun wonOnDiagonal(): Boolean {
+        var count = 0
+
+        for(i in 0 until TABLE_LENGHT) {
+            val hasTag = board.cells[i][i].content == seed
+            if(hasTag) count++
+        }
+
+        if(count == TABLE_LENGHT) {
+            return true
+        }
+
+        count = 0
+        for(row in 0 until ROW) {
+            for(col in COLUMN downTo 0) {
+                val hasTag = board.cells[row][col].content == seed
+                if(hasTag) count++
+            }
+        }
+
+        if(count == TABLE_LENGHT) {
+            return true
+        }
+
+        return false
     }
 }

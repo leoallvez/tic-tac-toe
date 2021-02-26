@@ -40,7 +40,7 @@ class OnePlayerActivity : AppCompatActivity() {
             if (player.won()) { player.toScore() }
             if (board.gameOver().not()) {
                 if (!playerVirtual.won()) {
-                    playerVirtual.analyzeAndPlay(player.tag)
+                    playerVirtual.analyzeAndPlay(player.seed)
                     if (playerVirtual.won()) {
                         playerVirtual.toScore()
                     }
@@ -63,8 +63,8 @@ class OnePlayerActivity : AppCompatActivity() {
         points.text = getString(R.string.score, player.points, playerVirtual.points)
         buttons?.indices?.forEach {
             when(board.showPosition(it)) {
-                player.tag -> print(it, R.color.lightBlue, "X")
-                playerVirtual.tag -> print(it, R.color.colorPlayerVirtal, "0")
+                player.seed -> print(it, R.color.lightBlue, "X")
+                playerVirtual.seed -> print(it, R.color.colorPlayerVirtal, "0")
                 else -> print(it, R.color.colorGreen, null)
             }
         }

@@ -21,11 +21,11 @@ class PlayerVirtual(name: String = "Machine", tag: Int = 0) : Player(name, tag) 
             }
         }
 
-        positions[higherNumberPosition] = tag
+        positions[higherNumberPosition] = seed
     }
 
     fun randomPlay(){
-        positions[Random().nextInt(positions.size)] = tag
+        positions[Random().nextInt(positions.size)] = seed
     }
 
     private fun canWin(tagOpponent: Int) = when(true) {
@@ -113,22 +113,22 @@ class PlayerVirtual(name: String = "Machine", tag: Int = 0) : Player(name, tag) 
     // duas casas ocupadas, faça ele.
     private fun rule2() : Boolean {
 
-        if (positions[6] == tag && positions[2] == tag && Board.isEmptyPosition(0)) {
+        if (positions[6] == seed && positions[2] == seed && Board.isEmptyPosition(0)) {
             positions[0] = brand
             return true
         }
 
-        if (positions[6] == tag && positions[2] == tag && Board.isEmptyPosition(8)) {
+        if (positions[6] == seed && positions[2] == seed && Board.isEmptyPosition(8)) {
             positions[8] = brand
             return true
         }
 
-        if (positions[0] == tag && positions[8] == tag && Board.isEmptyPosition(2)) {
+        if (positions[0] == seed && positions[8] == seed && Board.isEmptyPosition(2)) {
             positions[2] = brand
             return true
         }
 
-        if (positions[0] == tag && positions[8] == tag && Board.isEmptyPosition(6)) {
+        if (positions[0] == seed && positions[8] == seed && Board.isEmptyPosition(6)) {
             positions[6] = brand
             return true
         }
