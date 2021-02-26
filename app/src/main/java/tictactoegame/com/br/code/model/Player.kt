@@ -29,9 +29,8 @@ open class Player(val seed: Seed) {
     fun won() = wonOnHorizontal() || wonOnVertical() || wonOnDiagonal()
 
     private fun wonOnHorizontal(): Boolean {
-        var rowCells: List<Cell>
         for(row in 0 until ROW) {
-            rowCells = board.cells[row].toList().filter { it.content == seed }
+            val rowCells = board.cells[row].toList()
             if(isFilledCells(rowCells)) {
                 return true
             }
@@ -41,7 +40,7 @@ open class Player(val seed: Seed) {
 
     private fun wonOnVertical(): Boolean {
         for(col in 0 until COLUMN) {
-            var columnCells = mutableListOf<Cell>()
+            val columnCells = mutableListOf<Cell>()
             for(row in 0 until ROW) {
                 val cell = board.cells[row][col]
                 columnCells.add(cell)
@@ -55,7 +54,7 @@ open class Player(val seed: Seed) {
 
     private fun wonOnDiagonal(): Boolean {
 
-        var cells = mutableListOf<Cell>()
+        val cells = mutableListOf<Cell>()
 
         for(i in 0 until TABLE_LENGHT) {
             cells.add(board.cells[i][i])
@@ -82,4 +81,3 @@ open class Player(val seed: Seed) {
         return cells.filter { it.content == seed }.toMutableList().size == TABLE_LENGHT
     }
 }
-
