@@ -26,7 +26,7 @@ open class Player(val seed: Seed) {
         points++
     }
 
-    fun won() = wonOnHorizontal() || wonOnVertical() || wonOnDiagonal()
+    fun won() = wonOnHorizontal() || wonVertically || wonOnDiagonal()
 
     private fun wonOnHorizontal(): Boolean {
         for(row in 0 until ROW) {
@@ -38,7 +38,7 @@ open class Player(val seed: Seed) {
         return false
     }
 
-    private fun wonOnVertical(): Boolean {
+    private fun wonVertically(): Boolean {
         for(col in 0 until COLUMN) {
             val columnCells = mutableListOf<Cell>()
             for(row in 0 until ROW) {
@@ -78,6 +78,6 @@ open class Player(val seed: Seed) {
     }
 
     private fun isFilledCells(cells: List<Cell>): Boolean {
-        return cells.filter { it.content == seed }.toMutableList().size == TABLE_LENGHT
+        return cells.filter { it.content == seed }.size == TABLE_LENGHT
     }
 }
