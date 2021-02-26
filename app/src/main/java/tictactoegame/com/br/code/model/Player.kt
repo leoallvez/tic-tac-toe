@@ -32,7 +32,7 @@ open class Player(val seed: Seed) {
         var rowCells: List<Cell>
         for(row in 0 until ROW) {
             rowCells = board.cells[row].toList().filter { it.content == seed }
-            if(rowCells.size == ROW) {
+            if(isFilledCells(rowCells)) {
                 return true
             }
         }
@@ -46,8 +46,7 @@ open class Player(val seed: Seed) {
                 val cell = board.cells[row][col]
                 columnCells.add(cell)
             }
-            columnCells = columnCells.filter { it.content == seed }.toMutableList()
-            if (columnCells.size == COLUMN) {
+            if (isFilledCells(columnCells)) {
                 return true
             }
         }
@@ -55,29 +54,32 @@ open class Player(val seed: Seed) {
     }
 
     private fun wonOnDiagonal(): Boolean {
-        var count = 0
+
+        var cells = mutableListOf<Cell>()
 
         for(i in 0 until TABLE_LENGHT) {
-            val hasTag = board.cells[i][i].content == seed
-            if(hasTag) count++
+            cells.add(board.cells[i][i])
         }
 
-        if(count == TABLE_LENGHT) {
+        if(isFilledCells(cells)) {
             return true
         }
 
-        count = 0
+        var col = 2
+        cells.clear()
         for(row in 0 until ROW) {
-            for(col in COLUMN downTo 0) {
-                val hasTag = board.cells[row][col].content == seed
-                if(hasTag) count++
-            }
+            cells.add(board.cells[row][col--])
         }
 
-        if(count == TABLE_LENGHT) {
+        if(isFilledCells(cells)) {
             return true
         }
 
         return false
     }
+
+    private fun isFilledCells(cells: List<Cell>): Boolean {
+        return cells.filter { it.content == seed }.toMutableList().size == TABLE_LENGHT
+    }
 }
+
