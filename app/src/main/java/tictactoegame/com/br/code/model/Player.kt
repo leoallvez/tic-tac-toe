@@ -5,7 +5,7 @@ import tictactoegame.com.br.code.model.Board.COLUMN
 import tictactoegame.com.br.code.model.Board.ROW
 import tictactoegame.com.br.code.model.Board.TABLE_LENGHT
 
-open class Player(val seed: Seed) {
+open class HumanPlayer(val seed: Seed) {
 
     private val board: Board = Board
 
