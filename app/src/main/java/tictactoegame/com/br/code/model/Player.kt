@@ -1,14 +1,12 @@
 package tictactoegame.com.br.code.model
 
+import tictactoegame.com.br.code.GetPositionFuction
 import tictactoegame.com.br.code.Seed
-import tictactoegame.com.br.code.model.Board.COLUMN
-import tictactoegame.com.br.code.model.Board.ROW
-import tictactoegame.com.br.code.model.Board.TABLE_LENGHT
 
-open class HumanPlayer(val seed: Seed) {
 
-    private val board: Board = Board
+abstract class Player(private val seed: Seed) {
 
+    protected val board: Board = Board
     var turn: Boolean = false
     var points: Int = 0
 
@@ -16,68 +14,27 @@ open class HumanPlayer(val seed: Seed) {
         turn = turn.not()
     }
 
-    fun play(row: Int, column: Int) {
-        if (board.isEmptyPosition(row, column)) {
-            board.cells[row][column].content = seed
-        }
-    }
+    abstract fun play(row: Int, column: Int)
 
     fun toScore() {
         points++
     }
 
-    fun won() = wonHorizontally() || wonVertically() || wonDiagonally()
-
-    private fun wonHorizontally(): Boolean {
-        for(row in 0 until ROW) {
-            val rowCells = board.cells[row].toList()
-            if(isFilledCells(rowCells)) {
-                return true
+    fun won():Boolean {
+        val getPositionFuns = board.getPositionsFuns()
+        getPositionFuns.forEach { getPosition ->
+            val position: List<List<Cell>> = getPosition.invoke()
+            position.forEach { cells: List<Cell> ->
+                if(isFilledCells(cells)) {
+                    return true
+                }
             }
-        }
-        return false
-    }
-
-    private fun wonVertically(): Boolean {
-        for(col in 0 until COLUMN) {
-            val columnCells = mutableListOf<Cell>()
-            for(row in 0 until ROW) {
-                val cell = board.cells[row][col]
-                columnCells.add(cell)
-            }
-            if (isFilledCells(columnCells)) {
-                return true
-            }
-        }
-        return false
-    }
-
-    private fun wonDiagonally(): Boolean {
-
-        val cells = mutableListOf<Cell>()
-
-        for(i in 0 until TABLE_LENGHT) {
-            cells.add(board.cells[i][i])
-        }
-
-        if(isFilledCells(cells)) {
-            return true
-        }
-
-        var col = 2
-        cells.clear()
-        for(row in 0 until ROW) {
-            cells.add(board.cells[row][col--])
-        }
-
-        if(isFilledCells(cells)) {
-            return true
         }
 
         return false
     }
 
     private fun isFilledCells(cells: List<Cell>): Boolean {
-        return cells.filter { it.content == seed }.size == TABLE_LENGHT
+        return cells.filter { it.content == seed }.size == Board.SIZE
     }
 }

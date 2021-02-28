@@ -8,12 +8,12 @@ import kotlinx.android.synthetic.main.activity_one_player.*
 import tictactoegame.com.br.code.R
 import tictactoegame.com.br.code.model.Board
 import tictactoegame.com.br.code.model.Player
-import tictactoegame.com.br.code.model.PlayerVirtual
+import tictactoegame.com.br.code.model.VirtualPlayer
 
 class OnePlayerActivity : AppCompatActivity() {
 
     private val player = Player()
-    private val playerVirtual = PlayerVirtual()
+    private val playerVirtual = VirtualPlayer()
     private val board = Board(playerVirtual, player)
     private var buttons: Array<Button>? = null
 
