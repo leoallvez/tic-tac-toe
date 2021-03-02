@@ -32,13 +32,15 @@ class VirtualPlaye(private val seed: Seed) : Player(seed) {
         board.cells[row][col].content = seed
     }
 
-    fun randomPlay(){
-        val size = Board.SIZE
-        board.cells[Random().nextInt(size)][Random().nextInt(size)].content = seed
+    fun randomPlay() {
+        fun getNumber: Int = Random().nextInt(Board.SIZE)
+        board.cells[getNumber()][getNumber()].content = seed
     }
 
     private fun canWin(): Boolean {
-        val rules = listOf<() -> Boolean>(::rule1, ::rule2, ::rule3, ::rule4, ::rule5)
+        val rules = listOf<() -> Boolean>(
+            ::rule1, ::rule2, ::rule3, ::rule4, ::rule5
+        )
         rules.forEach { rule ->
             if(rule.invoke()) {
                 return true
