@@ -7,25 +7,10 @@ import java.util.*
  * Created by Leonardo on 25/01/2019.
  */
 
-class VirtualPlaye(private val seed: Seed) : Player(seed) {
+class VirtualPlayer(val seed: Seed) : Player(seed) {
 
     private val opponentSeed by lazy {
         if(seed == Seed.CROSS) Seed.NOUGHT else Seed.CROSS
-    }
-
-    fun play() {
-
-//        var higherNumber = 0
-//        var higherNumberPosition = 0
-//
-//        positions.forEachIndexed { index, element ->
-//            if ((element > higherNumber).and(Board.isEmptyPosition(index))) {
-//                higherNumber = element
-//                higherNumberPosition = index
-//            }
-//        }
-//
-//        positions[higherNumberPosition] = seed
     }
 
     override fun play(row: Int, col: Int) {
@@ -37,14 +22,11 @@ class VirtualPlaye(private val seed: Seed) : Player(seed) {
         board.cells[Random().nextInt(size)][Random().nextInt(size)].content = seed
     }
 
-    private fun canWin(): Boolean {
+    fun play()  {
         val rules = listOf<() -> Boolean>(::rule1, ::rule2, ::rule3, ::rule4, ::rule5)
         rules.forEach { rule ->
-            if(rule.invoke()) {
-                return true
-            }
+            rule.invoke()
         }
-        return false
     }
 
     private fun getOpponentCells(cells: List<Cell>): List<Cell> {
@@ -125,9 +107,4 @@ class VirtualPlaye(private val seed: Seed) : Player(seed) {
     }
     // 6 - se nenhuma dessas condições acontencer, pode preencher qualquer
     // espaço vázio.
-
-    fun analyzeAndPlay() {
-        canWin()
-        play()
-    }
 }

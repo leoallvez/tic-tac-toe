@@ -6,73 +6,88 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_one_player.*
 import tictactoegame.com.br.code.R
-import tictactoegame.com.br.code.model.Board
-import tictactoegame.com.br.code.model.Player
-import tictactoegame.com.br.code.model.VirtualPlayer
+import tictactoegame.com.br.code.Seed
+import tictactoegame.com.br.code.model.*
 
 class OnePlayerActivity : AppCompatActivity() {
 
-    private val player = Player()
-    private val playerVirtual = VirtualPlayer()
-    private val board = Board(playerVirtual, player)
-    private var buttons: Array<Button>? = null
+    private val humanPlayer = HumanPlayer(Seed.CROSS)
+    private val virtualPlayer = VirtualPlayer(Seed.NOUGHT)
+    private val board = Board
+    private val buttons: List<Button> by lazy {
+        listOf(
+                btnRow0Col0, btnRow0Col1, btnRow0Col2,
+                btnRow1Col0, btnRow0Col1, btnRow0Col2,
+                btnRow2Col0, btnRow2Col1, btnRow0Col2
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_one_player)
 
-        buttons  = arrayOf(btn00, btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08)
-        buttons?.forEach{ it ->
-            it.setOnClickListener{ played(it.tag.toString().toInt()) }
+        buttons.forEach{ it ->
+            val positions = it.tag.toString().split(":")
+            val row = positions[0].toInt()
+            val col = positions[1].toInt()
+            it.setOnClickListener{ played(row, col) }
         }
         bReset.setOnClickListener{
             newGame()
         }
-        board.start()
+        board.restart()
         newGame()
     }
 
-    private fun played(movement: Int) {
+    private fun played(row: Int, col: Int) {
 
-        if (Board.isEmptyPosition(movement).and(board.gameOver().not())) {
-
-            player.play(movement)
-            if (player.won()) { player.toScore() }
-            if (board.gameOver().not()) {
-                if (!playerVirtual.won()) {
-                    playerVirtual.analyzeAndPlay(player.seed)
-                    if (playerVirtual.won()) {
-                        playerVirtual.toScore()
+        if (notGameOver(row, col)) {
+            humanPlayer.play(row, col)
+            if (humanPlayer.won()) { humanPlayer.toScore() }
+            if (notGameOver(row, col).not()) {
+                if (virtualPlayer.won().not()) {
+                    virtualPlayer.play()
+                    if (virtualPlayer.won()) {
+                        virtualPlayer.toScore()
                     }
                 }
             }
-
             fills()
         }
     }
 
+    private fun notGameOver(row: Int, col: Int): Boolean {
+        val isEmptyPosition = Board.isEmptyPosition(row, col)
+        val humanWon = humanPlayer.won()
+        val virtualWon = virtualPlayer.won()
+        return (isEmptyPosition || humanWon || virtualWon).not()
+    }
+
     private fun newGame() {
-        board.start()
+        board.restart()
         //player.turnChange()
         //if (player.turn.not()) playerVirtual.randomPlay()
-        playerVirtual.randomPlay()
+        virtualPlayer.randomPlay()
         fills()
     }
 
     private fun fills() {
-        points.text = getString(R.string.score, player.points, playerVirtual.points)
-        buttons?.indices?.forEach {
-            when(board.showPosition(it)) {
-                player.seed -> print(it, R.color.lightBlue, "X")
-                playerVirtual.seed -> print(it, R.color.colorPlayerVirtal, "0")
-                else -> print(it, R.color.colorGreen, null)
+        points.text = getString(R.string.score, humanPlayer.points, virtualPlayer.points)
+        board.run { row, col ->
+            when(board.cells[row][col].content) {
+                humanPlayer.seed   -> print(row, col, R.color.lightBlue, "X")
+                virtualPlayer.seed -> print(row, col, R.color.lightPink, "0")
+                else               -> print(row, col, R.color.colorGreen, null)
             }
         }
     }
 
-    private fun print(position: Int, colorId: Int, symbol: String?) {
+    private fun print(row: Int, col: Int, colorId: Int, symbol: String?) {
         val color = ResourcesCompat.getColor(resources, colorId, null)
-        buttons?.get(position)?.setBackgroundColor(color)
-        buttons?.get(position)?.text = symbol
+        val button = buttons.find { it.tag == "$row:$col" }
+        button?.let {
+            it.setBackgroundColor(color)
+            it.text = symbol
+        }
     }
 }

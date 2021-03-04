@@ -7,5 +7,5 @@
     <color name="white">#FFF</color>
     <color name="colorPlayer">#76FF03</color>
     <color name="colorGreen">#B2FF59</color>
-    <color name="colorPlayerVirtal">#EC407A</color>
+    <color name="lightPink">#EC407A</color>
 </resources>

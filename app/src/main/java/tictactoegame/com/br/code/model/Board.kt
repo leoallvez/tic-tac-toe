@@ -5,7 +5,7 @@ import tictactoegame.com.br.code.Seed
 
 object Board {
 
-    private const val SIZE = 3
+    internal const val SIZE = 3
 
     val cells: Array<Array<Cell>> by lazy {
         Array(SIZE) { row ->
@@ -70,7 +70,7 @@ object Board {
         return diagonalsList
     }
 
-    private fun getPositionsFuns(): List<GetPositionFuction> {
+    fun getPositionsFuns(): List<GetPositionFuction> {
         return listOf<GetPositionFuction>(
             ::getRowsList, ::getColsList, ::getDiagonalsList
         )
