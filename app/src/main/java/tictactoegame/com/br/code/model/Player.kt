@@ -14,7 +14,7 @@ abstract class Player(private val seed: Seed) {
         turn = turn.not()
     }
 
-    abstract fun play(row: Int, column: Int)
+    abstract fun play(row: Int, col: Int)
 
     fun toScore() {
         points++

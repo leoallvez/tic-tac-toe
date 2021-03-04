@@ -3,10 +3,6 @@ package tictactoegame.com.br.code.model
 import tictactoegame.com.br.code.Seed
 import java.util.*
 
-/*
- * Created by Leonardo on 25/01/2019.
- */
-
 class VirtualPlayer(val seed: Seed) : Player(seed) {
 
     private val opponentSeed by lazy {
@@ -17,13 +13,16 @@ class VirtualPlayer(val seed: Seed) : Player(seed) {
         board.cells[row][col].content = seed
     }
 
-    fun randomPlay(){
-        val size = Board.SIZE
-        board.cells[Random().nextInt(size)][Random().nextInt(size)].content = seed
+    fun randomPlay() {
+        fun getNumber(): Int = Random().nextInt(Board.SIZE)
+        board.cells[getNumber()][getNumber()].content = seed
     }
 
+
     fun play()  {
-        val rules = listOf<() -> Boolean>(::rule1, ::rule2, ::rule3, ::rule4, ::rule5)
+        val rules = listOf<() -> Boolean>(
+            ::rule1, ::rule2, ::rule3, ::rule4, ::rule5
+        )
         rules.forEach { rule ->
             rule.invoke()
         }
