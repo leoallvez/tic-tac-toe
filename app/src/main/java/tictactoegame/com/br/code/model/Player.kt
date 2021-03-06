@@ -1,6 +1,5 @@
 package tictactoegame.com.br.code.model
 
-import tictactoegame.com.br.code.GetPositionFuction
 import tictactoegame.com.br.code.Seed
 
 
@@ -13,13 +12,13 @@ abstract class Player(private val seed: Seed) {
     fun turnChange() {
         turn = turn.not()
     }
-
+cd
     abstract fun play(row: Int, col: Int)
 
     fun toScore() {
         points++
     }
-
+    //Refatorar
     fun won():Boolean {
         val getPositionFuns = board.getPositionsFuns()
         getPositionFuns.forEach { getPosition ->

@@ -17,8 +17,8 @@ class OnePlayerActivity : AppCompatActivity() {
     private val buttons: List<Button> by lazy {
         listOf(
                 btnRow0Col0, btnRow0Col1, btnRow0Col2,
-                btnRow1Col0, btnRow0Col1, btnRow0Col2,
-                btnRow2Col0, btnRow2Col1, btnRow0Col2
+                btnRow1Col0, btnRow1Col1, btnRow1Col2,
+                btnRow2Col0, btnRow2Col1, btnRow2Col2
         )
     }
 
@@ -26,13 +26,13 @@ class OnePlayerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_one_player)
 
-        buttons.forEach{ it ->
+        buttons.forEach {
             val positions = it.tag.toString().split(":")
             val row = positions[0].toInt()
             val col = positions[1].toInt()
-            it.setOnClickListener{ played(row, col) }
+            it.setOnClickListener { played(row, col) }
         }
-        bReset.setOnClickListener{
+        bReset.setOnClickListener {
             newGame()
         }
         board.restart()
@@ -58,15 +58,12 @@ class OnePlayerActivity : AppCompatActivity() {
 
     private fun notGameOver(row: Int, col: Int): Boolean {
         val isEmptyPosition = Board.isEmptyPosition(row, col)
-        val humanWon = humanPlayer.won()
-        val virtualWon = virtualPlayer.won()
-        return (isEmptyPosition || humanWon || virtualWon).not()
+        val nobodyWon = (humanPlayer.won() && virtualPlayer.won()).not()
+        return (isEmptyPosition && nobodyWon)
     }
 
     private fun newGame() {
         board.restart()
-        //player.turnChange()
-        //if (player.turn.not()) playerVirtual.randomPlay()
         virtualPlayer.randomPlay()
         fills()
     }

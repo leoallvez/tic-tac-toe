@@ -87,7 +87,15 @@ object Board {
         return false
     }
 
-    fun <T> run(action: (row: Int,col: Int) -> T): T? {
+    fun <T> run(action: (row: Int,col: Int) -> T) {
+        for(row in 0 until SIZE) {
+            for(col in 0 until SIZE) {
+                action(row, col)
+            }
+        }
+    }
+
+    fun <T> runWithBack(action: (row: Int,col: Int) -> T): T? {
         for(row in 0 until SIZE) {
             for(col in 0 until SIZE) {
                 return action(row, col)
@@ -96,7 +104,7 @@ object Board {
         return null
     }
 
-    private fun isFullyPopulated(): Boolean = run { row, col ->
+    private fun isFullyPopulated(): Boolean = runWithBack run@{ row, col ->
         if (isEmptyPosition(row, col)) {
             return@run true
         }
