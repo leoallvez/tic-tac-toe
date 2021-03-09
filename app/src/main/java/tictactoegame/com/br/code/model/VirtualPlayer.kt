@@ -3,10 +3,10 @@ package tictactoegame.com.br.code.model
 import tictactoegame.com.br.code.Seed
 import java.util.*
 
-class VirtualPlayer(val seed: Seed) : Player(seed) {
+class VirtualPlayer(private val seed: Seed) : Player(seed) {
 
     private val opponentSeed by lazy {
-        if(seed == Seed.CROSS) Seed.NOUGHT else Seed.CROSS
+        if(seed == Seed.CROSS) Seed.CIRCLE else Seed.CROSS
     }
 
     override fun play(row: Int, col: Int) {
@@ -18,18 +18,15 @@ class VirtualPlayer(val seed: Seed) : Player(seed) {
         board.cells[getNumber()][getNumber()].content = seed
     }
 
-
-    fun play()  {
-        val rules = listOf<() -> Boolean>(
-            ::rule1, ::rule2, ::rule3, ::rule4, ::rule5
-        )
-        rules.forEach { rule ->
-            rule.invoke()
+    fun play(): Boolean {
+        listOf<() -> Boolean> (
+                ::rule1, ::rule2, ::rule3, ::rule4, ::rule5, ::rule6
+        ).forEach { rule ->
+            if(rule.invoke()) {
+                return@play true
+            }
         }
-    }
-
-    private fun getOpponentCells(cells: List<Cell>): List<Cell> {
-        return cells.filter { it.content == opponentSeed }
+        return false
     }
 
     private fun getEmptyCell(cells: List<Cell>): Cell? {
@@ -38,7 +35,7 @@ class VirtualPlayer(val seed: Seed) : Player(seed) {
 
     // 1 - se o oponente ocupar duas casas seguidas, ocupe a terceira
     private fun rule1(): Boolean = board.run { cells ->
-        val opponentCells = getOpponentCells(cells)
+        val opponentCells = cells.filter { it.content == opponentSeed }
         if(opponentCells.size == 2) {
             val cell = getEmptyCell(cells)
             cell?.let {
@@ -64,8 +61,9 @@ class VirtualPlayer(val seed: Seed) : Player(seed) {
     }
 
     // 3 - caso contrário, se o espaço do centro estive vazio, ocupe ele
-    private fun rule3(): Boolean{
-        if (board.cells[1][1].isEmpty()) {
+    private fun rule3(): Boolean {
+        val isEmptyPosition = board.isEmptyPosition(row = 1, col = 1)
+        if (isEmptyPosition) {
             board.cells[1][1].content = seed
             return true
         }
@@ -87,7 +85,6 @@ class VirtualPlayer(val seed: Seed) : Player(seed) {
                 }
             }
         }
-
         return false
     }
 
@@ -104,6 +101,18 @@ class VirtualPlayer(val seed: Seed) : Player(seed) {
         }
         return false
     }
+
     // 6 - se nenhuma dessas condições acontencer, pode preencher qualquer
     // espaço vázio.
+    private fun rule6(): Boolean {
+        var result = false
+        board.run { row, col ->
+            val isEmptyPosition = board.isEmptyPosition(row, col)
+            if(isEmptyPosition && result.not()) {
+                board.cells[row][col].content = seed
+                result = true
+            }
+        }
+        return result
+    }
 }

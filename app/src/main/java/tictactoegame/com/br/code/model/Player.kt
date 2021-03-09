@@ -12,7 +12,7 @@ abstract class Player(private val seed: Seed) {
     fun turnChange() {
         turn = turn.not()
     }
-cd
+
     abstract fun play(row: Int, col: Int)
 
     fun toScore() {

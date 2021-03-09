@@ -11,8 +11,8 @@ import tictactoegame.com.br.code.model.*
 
 class OnePlayerActivity : AppCompatActivity() {
 
-    private val humanPlayer = HumanPlayer(Seed.CROSS)
-    private val virtualPlayer = VirtualPlayer(Seed.NOUGHT)
+    private val humanPlayer = HumanPlayer(Seed.CIRCLE)
+    private val virtualPlayer = VirtualPlayer(Seed.CROSS)
     private val board = Board
     private val buttons: List<Button> by lazy {
         listOf(
@@ -58,8 +58,8 @@ class OnePlayerActivity : AppCompatActivity() {
 
     private fun notGameOver(row: Int, col: Int): Boolean {
         val isEmptyPosition = Board.isEmptyPosition(row, col)
-        val nobodyWon = (humanPlayer.won() && virtualPlayer.won()).not()
-        return (isEmptyPosition && nobodyWon)
+        val someOneWon = humanPlayer.won() || virtualPlayer.won()
+        return isEmptyPosition && someOneWon.not()
     }
 
     private fun newGame() {
@@ -72,9 +72,9 @@ class OnePlayerActivity : AppCompatActivity() {
         points.text = getString(R.string.score, humanPlayer.points, virtualPlayer.points)
         board.run { row, col ->
             when(board.cells[row][col].content) {
-                humanPlayer.seed   -> print(row, col, R.color.lightBlue, "X")
-                virtualPlayer.seed -> print(row, col, R.color.lightPink, "0")
-                else               -> print(row, col, R.color.colorGreen, null)
+                Seed.CIRCLE -> print(row, col, R.color.lightBlue, "X")
+                Seed.CROSS  -> print(row, col, R.color.lightPink, "0")
+                else        -> print(row, col, R.color.colorGreen, null)
             }
         }
     }
