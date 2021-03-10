@@ -1,7 +1,6 @@
 package tictactoegame.com.br.code.model
 
 import tictactoegame.com.br.code.GetPositionFuction
-import tictactoegame.com.br.code.Seed
 
 object Board {
 
@@ -54,37 +53,37 @@ object Board {
         return colsList
     }
 
-    fun getDiagonalsList(): List<List<Cell>> {
+    fun getDiagList(): List<List<Cell>> {
         val diagonalsList = mutableListOf<List<Cell>>()
         val cellsList = mutableListOf<Cell>()
 
         for(i in 0 until SIZE) {
             cellsList.add(cells[i][i])
         }
-        diagonalsList.add(cellsList)
+        diagonalsList.add(cellsList.toCollection(mutableListOf()))
         var col = 2
         cellsList.clear()
         for(row in 0 until SIZE) {
             cellsList.add(cells[row][col--])
         }
+        diagonalsList.add(cellsList)
         return diagonalsList
     }
 
     fun getPositionsFuns(): List<GetPositionFuction> {
         return listOf<GetPositionFuction>(
-            ::getRowsList, ::getColsList, ::getDiagonalsList
+            ::getRowsList, ::getColsList, ::getDiagList
         )
     }
 
-    fun run(action: (cells: List<Cell>) -> Boolean): Boolean {
+    fun run(action: (List<Cell>) -> Unit) {
         val getPositionFuns = getPositionsFuns()
         getPositionFuns.forEach { getPosition ->
             val position: List<List<Cell>> = getPosition.invoke()
             position.forEach { cells: List<Cell> ->
-                return action(cells)
+                action(cells)
             }
         }
-        return false
     }
 
     fun <T> run(action: (row: Int,col: Int) -> T) {
@@ -93,25 +92,5 @@ object Board {
                 action(row, col)
             }
         }
-    }
-
-    fun <T> runWithBack(action: (row: Int,col: Int) -> T): T? {
-        for(row in 0 until SIZE) {
-            for(col in 0 until SIZE) {
-                return action(row, col)
-            }
-        }
-        return null
-    }
-
-    private fun isFullyPopulated(): Boolean = runWithBack run@{ row, col ->
-        if (isEmptyPosition(row, col)) {
-            return@run true
-        }
-        return@run false
-    } ?: false
-
-    fun isEmptyPosition(row: Int, col: Int): Boolean {
-        return cells[row][col].content == Seed.EMPTY
     }
 }

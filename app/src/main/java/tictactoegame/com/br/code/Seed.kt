@@ -1,5 +1,5 @@
 package tictactoegame.com.br.code
 
 enum class Seed {
-    EMPTY, CROSS, CIRCLE
+    EMPTY, X, O
 }

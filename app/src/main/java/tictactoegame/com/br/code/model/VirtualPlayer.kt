@@ -1,27 +1,33 @@
 package tictactoegame.com.br.code.model
 
+import tictactoegame.com.br.code.Seed.*
 import tictactoegame.com.br.code.Seed
 import java.util.*
 
 class VirtualPlayer(private val seed: Seed) : Player(seed) {
 
-    private val opponentSeed by lazy {
-        if(seed == Seed.CROSS) Seed.CIRCLE else Seed.CROSS
+    private val opponentSeed by lazy { if(seed == X) O else X }
+
+    private val rules by lazy {
+        listOf<() -> Boolean> (::rule1, ::rule2, ::rule3, ::rule4, ::rule5, ::rule6)
     }
 
-    override fun play(row: Int, col: Int) {
-        board.cells[row][col].content = seed
-    }
-
-    fun randomPlay() {
+    fun randomPlay(): Boolean {
+        val ckeckedCells = mutableSetOf<Cell>()
         fun getNumber(): Int = Random().nextInt(Board.SIZE)
-        board.cells[getNumber()][getNumber()].content = seed
+        do {
+            val cell = board.cells[getNumber()][getNumber()]
+            ckeckedCells.add(cell)
+            if(cell.isEmpty()) {
+                cell.content = seed
+                return true
+            }
+        } while (ckeckedCells.size != 9)
+        return false
     }
 
     fun play(): Boolean {
-        listOf<() -> Boolean> (
-                ::rule1, ::rule2, ::rule3, ::rule4, ::rule5, ::rule6
-        ).forEach { rule ->
+        rules.forEach { rule ->
             if(rule.invoke()) {
                 return@play true
             }
@@ -29,57 +35,49 @@ class VirtualPlayer(private val seed: Seed) : Player(seed) {
         return false
     }
 
-    private fun getEmptyCell(cells: List<Cell>): Cell? {
-        return cells.find { it.content == Seed.EMPTY }
-    }
-
-    // 1 - se o oponente ocupar duas casas seguidas, ocupe a terceira
-    private fun rule1(): Boolean = board.run { cells ->
-        val opponentCells = cells.filter { it.content == opponentSeed }
-        if(opponentCells.size == 2) {
-            val cell = getEmptyCell(cells)
-            cell?.let {
-                board.cells[it.row][it.col].content = seed
-                return@run true
+    private fun rule0(_seed: Seed): Boolean {
+        var play = false
+        board.run { cells ->
+            if(play.not()) {
+                val seedCells = cells.filter { it.content == _seed }
+                if (seedCells.size == 2) {
+                    val cell = cells.find { it.isEmpty() }
+                    cell?.let {
+                        cell.content = seed
+                        play = true
+                    }
+                }
             }
         }
-        return@run false
+        return play
     }
 
     // 2 - caso contrário se algum movimento que cria uma linhas com
     // duas casas ocupadas, faça ele.
-    private fun rule2() : Boolean = board.run { cells ->
-        val myCells = cells.filter { it.content == seed }
-        if(myCells.size == 2) {
-            val cell = getEmptyCell(cells)
-            cell?.let {
-                board.cells[it.row][it.col].content = seed
-                return@run true
-            }
-        }
-        return@run false
-    }
+    private fun rule1(): Boolean = rule0(seed)
+
+    // 1 - se o oponente ocupar duas casas seguidas, ocupe a terceira
+    private fun rule2(): Boolean = rule0(opponentSeed)
 
     // 3 - caso contrário, se o espaço do centro estive vazio, ocupe ele
     private fun rule3(): Boolean {
-        val isEmptyPosition = board.isEmptyPosition(row = 1, col = 1)
-        if (isEmptyPosition) {
-            board.cells[1][1].content = seed
+        val cell = board.cells[1][1]
+        if (cell.isEmpty()) {
+            cell.content = seed
             return true
         }
         return false
     }
 
-    // 4 - caso contrário, se o oponente preencheu uma quina, preencha a
-    // quina contrária.
+    // 4 - caso contrário, se o oponente preencheu uma quina, preencha a quina contrária.
     private fun rule4(): Boolean {
-        val diagonalCells = board.getDiagonalsList()
+        val diagonalCells = board.getDiagList()
         diagonalCells.forEach { cells ->
             cells.forEach { cell ->
                 val oppCorner: Cell? = board.getOppositeCornerCell(cell)
                 oppCorner?.let {
                     if(oppCorner.isEmpty()) {
-                        board.cells[oppCorner.row][oppCorner.col].content = seed
+                        oppCorner.content = seed
                         return true
                     }
                 }
@@ -90,11 +88,11 @@ class VirtualPlayer(private val seed: Seed) : Player(seed) {
 
     // 5 - caso contrário, se tiver uma quina vázia preencha ela.
     private fun rule5(): Boolean {
-        val diagonals = board.getDiagonalsList()
+        val diagonals = board.getDiagList()
         diagonals.forEach { cells ->
             cells.forEach { cell ->
                 if(cell.isEmpty() && cell.isNotCenter()) {
-                    board.cells[cell.row][cell.col].content = seed
+                    cell.content = seed
                     return true
                 }
             }
@@ -102,17 +100,6 @@ class VirtualPlayer(private val seed: Seed) : Player(seed) {
         return false
     }
 
-    // 6 - se nenhuma dessas condições acontencer, pode preencher qualquer
-    // espaço vázio.
-    private fun rule6(): Boolean {
-        var result = false
-        board.run { row, col ->
-            val isEmptyPosition = board.isEmptyPosition(row, col)
-            if(isEmptyPosition && result.not()) {
-                board.cells[row][col].content = seed
-                result = true
-            }
-        }
-        return result
-    }
+    // 6 - se nenhuma dessas condições acontencer, pode preencher qualquer espaço vázio.
+    private fun rule6(): Boolean = randomPlay()
 }
