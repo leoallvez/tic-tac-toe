@@ -1,4 +1,4 @@
-package tictactoegame.com.br.code
+package io.github.leoallvez.tictactoe
 
 import org.junit.Test
 

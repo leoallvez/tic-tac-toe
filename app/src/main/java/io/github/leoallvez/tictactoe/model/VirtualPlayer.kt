@@ -1,12 +1,11 @@
-package tictactoegame.com.br.code.model
+package io.github.leoallvez.tictactoe.model
 
-import tictactoegame.com.br.code.Seed.*
-import tictactoegame.com.br.code.Seed
+import io.github.leoallvez.tictactoe.Seed
 import java.util.*
 
 class VirtualPlayer(private val seed: Seed) : Player(seed) {
 
-    private val opponentSeed by lazy { if(seed == X) O else X }
+    private val opponentSeed by lazy { if(seed == Seed.X) Seed.O else Seed.X }
 
     private val rules by lazy {
         listOf<() -> Boolean> (::rule1, ::rule2, ::rule3, ::rule4, ::rule5, ::rule6)

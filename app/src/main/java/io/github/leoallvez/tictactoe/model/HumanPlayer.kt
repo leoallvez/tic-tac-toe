@@ -1,6 +1,6 @@
-package tictactoegame.com.br.code.model
+package io.github.leoallvez.tictactoe.model
 
-import tictactoegame.com.br.code.Seed
+import io.github.leoallvez.tictactoe.Seed
 
 data class HumanPlayer(private val seed: Seed) : Player(seed) {
 

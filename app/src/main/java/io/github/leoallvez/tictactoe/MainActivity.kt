@@ -1,30 +1,30 @@
-package tictactoegame.com.br.code.activity
+package io.github.leoallvez.tictactoe
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.content.res.ResourcesCompat
-import android.support.v7.app.AppCompatActivity
 import android.widget.Button
-import kotlinx.android.synthetic.main.activity_one_player.*
-import tictactoegame.com.br.code.R
-import tictactoegame.com.br.code.Seed
-import tictactoegame.com.br.code.model.*
+import androidx.core.content.res.ResourcesCompat
+import io.github.leoallvez.tictactoe.model.Board
+import io.github.leoallvez.tictactoe.model.HumanPlayer
+import io.github.leoallvez.tictactoe.model.VirtualPlayer
+import kotlinx.android.synthetic.main.activity_main.*
 
-class OnePlayerActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private val humanPlayer = HumanPlayer(Seed.O)
     private val virtualPlayer = VirtualPlayer(Seed.X)
     private val board = Board
     private val buttons: List<Button> by lazy {
         listOf(
-                btnRow0Col0, btnRow0Col1, btnRow0Col2,
-                btnRow1Col0, btnRow1Col1, btnRow1Col2,
-                btnRow2Col0, btnRow2Col1, btnRow2Col2
+            btnRow0Col0, btnRow0Col1, btnRow0Col2,
+            btnRow1Col0, btnRow1Col1, btnRow1Col2,
+            btnRow2Col0, btnRow2Col1, btnRow2Col2
         )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_one_player)
+        setContentView(R.layout.activity_main)
 
         buttons.forEach {
             val positions = it.tag.toString().split(":")
