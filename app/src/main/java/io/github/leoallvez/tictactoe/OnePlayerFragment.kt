@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.content.res.ResourcesCompat
+import io.github.leoallvez.tictactoe.databinding.FragmentOnePlayerBinding
 import io.github.leoallvez.tictactoe.model.Board
 import io.github.leoallvez.tictactoe.model.HumanPlayer
 import io.github.leoallvez.tictactoe.model.VirtualPlayer
@@ -18,40 +19,34 @@ class OnePlayerFragment : Fragment() {
     private val virtualPlayer = VirtualPlayer(Seed.X)
     private val board = Board
     private val buttons = mutableListOf<Button>()
-//    private val buttons: List<Button> by lazy {
-//        listOf(
-//            btnRow0Col0, btnRow0Col1, btnRow0Col2,
-//            btnRow1Col0, btnRow1Col1, btnRow1Col2,
-//            btnRow2Col0, btnRow2Col1, btnRow2Col2
-//        )
-//    }
-
+    private lateinit var binding: FragmentOnePlayerBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_one_player, container, false)
+        binding = FragmentOnePlayerBinding.inflate(inflater, container, false)
+        startElements(binding.root)
+        binding.viewModel = this
+        return binding.root
     }
 
     private fun startElements(view: View) {
 
-//        buttons.forEach {
-//            val positions = it.tag.toString().split(":")
-//            val row = positions[0].toInt()
-//            val col = positions[1].toInt()
-//            it.setOnClickListener { played(row, col) }
-//        }
-
-        bReset.setOnClickListener {
-            startGame()
+        board.run { row, col ->
+            val button = view.findViewWithTag<Button>("$row:$col")
+            button.setOnClickListener { played(row, col) }
+            buttons.add(button)
         }
+
+//        bReset.setOnClickListener {
+//            startGame()
+//        }
 
         startGame()
     }
 
-    private fun played(row: Int, col: Int) {
+    fun played(row: Int, col: Int) {
 
         if (notGameOver(row, col)) {
             humanPlayer.play(row, col)
@@ -68,9 +63,9 @@ class OnePlayerFragment : Fragment() {
         }
     }
 
-    fun newGame(view: View) {
-        startGame()
-    }
+//    fun newGame(view: View) {
+//        startGame()
+//    }
 
     private fun notGameOver(row: Int, col: Int): Boolean {
         val isEmptyPosition = Board.cells[row][col].isEmpty()
@@ -78,14 +73,14 @@ class OnePlayerFragment : Fragment() {
         return isEmptyPosition && someOneWon.not()
     }
 
-    private fun startGame() {
+    fun startGame() {
         board.restart()
         virtualPlayer.randomPlay()
         fills()
     }
 
     private fun fills() {
-        points.text = getString(R.string.score, humanPlayer.points, virtualPlayer.points)
+        //points.text = getString(R.string.score, humanPlayer.points, virtualPlayer.points)
         board.run { row, col ->
             when(board.cells[row][col].content) {
                 Seed.O -> print(row, col, R.color.lightBlue, "X")
