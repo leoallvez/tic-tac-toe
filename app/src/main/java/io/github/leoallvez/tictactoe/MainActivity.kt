@@ -10,7 +10,7 @@ import io.github.leoallvez.tictactoe.model.VirtualPlayer
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
+    /**
     private val humanPlayer = HumanPlayer(Seed.O)
     private val virtualPlayer = VirtualPlayer(Seed.X)
     private val board = Board
@@ -21,11 +21,12 @@ class MainActivity : AppCompatActivity() {
             btnRow2Col0, btnRow2Col1, btnRow2Col2
         )
     }
+    */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        /**
         buttons.forEach {
             val positions = it.tag.toString().split(":")
             val row = positions[0].toInt()
@@ -37,8 +38,9 @@ class MainActivity : AppCompatActivity() {
         }
         board.restart()
         newGame()
+        */
     }
-
+    /**
     private fun played(row: Int, col: Int) {
 
         if (notGameOver(row, col)) {
@@ -87,4 +89,5 @@ class MainActivity : AppCompatActivity() {
             it.text = symbol
         }
     }
+    */
 }
