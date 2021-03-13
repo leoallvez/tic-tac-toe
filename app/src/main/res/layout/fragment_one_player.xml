@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="io.github.leoallvez.tictactoe.OnePlayerFragment" />
+            type="io.github.leoallvez.tictactoe.OnePlayerViewModel" />
     </data>
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -27,7 +27,7 @@
                 <TextView
                     android:id="@+id/points"
                     android:layout_width="match_parent"
-                    android:text="Me: 0, Machine: 0"
+                    android:text="@{viewModel.getPoints()}"
                     android:padding="4dp"
                     android:layout_height="wrap_content" />
                 <!--Row 1-->
@@ -42,7 +42,8 @@
                         android:gravity="center"
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button"
-                        android:tag="0:0" />
+                        android:tag="0:0"
+                        android:onClick="@{() -> viewModel.play(0, 0)}"/>
                     <Button
                         android:id="@+id/btnRow0Col1"
                         android:layout_width="80dp"
@@ -53,7 +54,8 @@
                         android:gravity="center"
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button"
-                        android:tag="0:1" />
+                        android:tag="0:1"
+                        android:onClick="@{() -> viewModel.play(0, 1)}"/>
                     <Button
                         android:id="@+id/btnRow0Col2"
                         android:layout_width="80dp"
@@ -64,7 +66,8 @@
                         android:gravity="center"
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button"
-                        android:tag="0:2" />
+                        android:tag="0:2"
+                        android:onClick="@{() -> viewModel.play(0, 2)}"/>
                 </TableRow>
                 <!--Row 2-->
                 <TableRow>
@@ -79,7 +82,8 @@
                         android:gravity="center"
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button"
-                        android:tag="1:0" />
+                        android:tag="1:0"
+                        android:onClick="@{() -> viewModel.play(1, 0)}"/>
                     <Button
                         android:id="@+id/btnRow1Col1"
                         android:layout_width="80dp"
@@ -90,7 +94,8 @@
                         android:gravity="center"
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button"
-                        android:tag="1:1" />
+                        android:tag="1:1"
+                        android:onClick="@{() -> viewModel.play(1, 1)}"/>
                     <Button
                         android:id="@+id/btnRow1Col2"
                         android:layout_width="80dp"
@@ -101,7 +106,8 @@
                         android:gravity="center"
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button"
-                        android:tag="1:2" />
+                        android:tag="1:2"
+                        android:onClick="@{() -> viewModel.play(1, 2)}"/>
                 </TableRow>
                 <!--Row 3-->
                 <TableRow>
@@ -116,7 +122,8 @@
                         android:gravity="center"
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button"
-                        android:tag="2:0" />
+                        android:tag="2:0"
+                        android:onClick="@{() -> viewModel.play(2, 0)}"/>
 
                     <Button
                         android:id="@+id/btnRow2Col1"
@@ -128,7 +135,8 @@
                         android:gravity="center"
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button"
-                        android:tag="2:1" />
+                        android:tag="2:1"
+                        android:onClick="@{() -> viewModel.play(2, 1)}"/>
                     <Button
                         android:id="@+id/btnRow2Col2"
                         android:layout_width="80dp"
@@ -139,7 +147,8 @@
                         android:gravity="center"
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button"
-                        android:tag="2:2" />
+                        android:tag="2:2"
+                        android:onClick="@{() -> viewModel.play(2, 2)}"/>
                 </TableRow>
             </TableLayout>
 
