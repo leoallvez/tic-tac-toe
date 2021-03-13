@@ -11,9 +11,11 @@ import io.github.leoallvez.tictactoe.databinding.FragmentOnePlayerBinding
 import io.github.leoallvez.tictactoe.model.Board
 import io.github.leoallvez.tictactoe.model.HumanPlayer
 import io.github.leoallvez.tictactoe.model.VirtualPlayer
-import kotlinx.android.synthetic.main.fragment_one_player.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class OnePlayerFragment : Fragment() {
+
+    private val viewModel: OnePlayerViewModel by viewModel()
 
     private val humanPlayer = HumanPlayer(Seed.O)
     private val virtualPlayer = VirtualPlayer(Seed.X)
@@ -38,11 +40,6 @@ class OnePlayerFragment : Fragment() {
             button.setOnClickListener { played(row, col) }
             buttons.add(button)
         }
-
-//        bReset.setOnClickListener {
-//            startGame()
-//        }
-
         startGame()
     }
 
@@ -62,10 +59,6 @@ class OnePlayerFragment : Fragment() {
             fills()
         }
     }
-
-//    fun newGame(view: View) {
-//        startGame()
-//    }
 
     private fun notGameOver(row: Int, col: Int): Boolean {
         val isEmptyPosition = Board.cells[row][col].isEmpty()
