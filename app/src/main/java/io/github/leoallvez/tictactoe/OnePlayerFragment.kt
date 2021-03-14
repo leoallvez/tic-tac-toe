@@ -28,7 +28,7 @@ class OnePlayerFragment : Fragment() {
         binding.viewModel = viewModel
         viewModel.startGame()
         viewModel.getBoard().observe(viewLifecycleOwner, { board ->
-            board.run { row, col ->
+            board?.run { row, col ->
                 when(board.cells[row][col].content) {
                     Seed.O -> print(row, col, R.color.lightBlue, "X")
                     Seed.X -> print(row, col, R.color.lightPink, "0")

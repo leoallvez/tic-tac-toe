@@ -12,16 +12,16 @@ class VirtualPlayer(private val seed: Seed) : Player(seed) {
     }
 
     fun randomPlay(): Boolean {
-        val ckeckedCells = mutableSetOf<Cell>()
+        val checkedCells = mutableSetOf<Cell>()
         fun getNumber(): Int = Random().nextInt(Board.SIZE)
         do {
             val cell = board.cells[getNumber()][getNumber()]
-            ckeckedCells.add(cell)
+            checkedCells.add(cell)
             if(cell.isEmpty()) {
                 cell.content = seed
                 return true
             }
-        } while (ckeckedCells.size != 9)
+        } while (checkedCells.size != 9)
         return false
     }
 
