@@ -5,7 +5,7 @@ import java.util.*
 
 class VirtualPlayer(private val seed: Seed) : Player(seed) {
 
-    private val opponentSeed by lazy { if(seed == Seed.X) Seed.O else Seed.X }
+    val opponentSeed by lazy { if(seed == Seed.X) Seed.O else Seed.X }
 
     private val rules by lazy {
         listOf<() -> Boolean> (::rule1, ::rule2, ::rule3, ::rule4, ::rule5, ::rule6)

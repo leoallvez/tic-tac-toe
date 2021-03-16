@@ -14,6 +14,6 @@ class Cell(val row: Int, val col: Int) {
     }
 
     fun isNotCenter(): Boolean {
-        return !(row == 0 && col == 0)
+        return !(row == 1 && col == 1)
     }
 }
