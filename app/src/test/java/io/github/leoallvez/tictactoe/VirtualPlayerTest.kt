@@ -11,9 +11,9 @@ class VirtualPlayerTest {
     @Test
     fun `when seed is X opponentSeed is O`() {
         // given
-        val player = makePlayer(Seed.X)
+        val player: VirtualPlayer = makePlayer(Seed.X)
         // when
-        val result = player.opponentSeed == Seed.O
+        val result: Boolean = player.opponentSeed == Seed.O
         // then
         Assert.assertEquals(true, result)
     }
@@ -21,9 +21,9 @@ class VirtualPlayerTest {
     @Test
     fun `when seed is O opponentSeed is X`() {
         // given
-        val player = makePlayer(Seed.O)
+        val player: VirtualPlayer = makePlayer(Seed.O)
         // when
-        val result = player.opponentSeed == Seed.X
+        val result: Boolean = player.opponentSeed == Seed.X
         // then
         Assert.assertEquals(true, result)
     }
@@ -32,7 +32,7 @@ class VirtualPlayerTest {
 
     fun `when board is full randomPlay() return false`() {
         // given
-        val player = makePlayer()
+        val player: VirtualPlayer = makePlayer()
         // when
         every { player.board.cells } returns makeBoard(Seed.O)
         // then
@@ -42,7 +42,7 @@ class VirtualPlayerTest {
     @Test
     fun `when board is not full randomPlay() return true`() {
         // given
-        val player = makePlayer()
+        val player: VirtualPlayer = makePlayer()
         // when
         every { player.board.cells } returns makeBoard()
         // then
