@@ -3,7 +3,7 @@ package io.github.leoallvez.tictactoe.model
 import io.github.leoallvez.tictactoe.Seed
 import java.util.*
 
-class VirtualPlayer(private val seed: Seed) : Player(seed) {
+class VirtualPlayer(seed: Seed, board: Board = Board) : Player(seed, board) {
 
     val opponentSeed by lazy { if(seed == Seed.X) Seed.O else Seed.X }
 

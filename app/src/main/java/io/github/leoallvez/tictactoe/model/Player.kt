@@ -2,9 +2,7 @@ package io.github.leoallvez.tictactoe.model
 
 import io.github.leoallvez.tictactoe.Seed
 
-abstract class Player(private val seed: Seed) {
-
-    protected val board: Board = Board
+abstract class Player(val seed: Seed, val board: Board = Board) {
 
     var points: Int = 0
         private set

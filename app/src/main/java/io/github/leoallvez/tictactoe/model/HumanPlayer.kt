@@ -2,7 +2,7 @@ package io.github.leoallvez.tictactoe.model
 
 import io.github.leoallvez.tictactoe.Seed
 
-data class HumanPlayer(private val seed: Seed) : Player(seed) {
+class HumanPlayer(seed: Seed, board: Board = Board) : Player(seed, board) {
 
     fun play(row: Int, col: Int) {
         val cell = board.cells[row][col]
