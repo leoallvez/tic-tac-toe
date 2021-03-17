@@ -9,7 +9,7 @@ class CellTest {
     @Test
     fun `when content is EMPTY isEmpty() return true`() {
         // given
-        val cell = makeCell()
+        val cell: Cell = makeCell()
         // when
         cell.content = Seed.EMPTY
         val cellIsEmpty: Boolean = cell.isEmpty()
@@ -20,7 +20,7 @@ class CellTest {
     @Test
     fun `when content is not EMPTY isEmpty() return false`() {
         // given
-        val cell = makeCell()
+        val cell: Cell = makeCell()
         // when
         cell.content = Seed.X
         val cellIsEmpty: Boolean = cell.isEmpty()
@@ -31,7 +31,7 @@ class CellTest {
     @Test
     fun `when row and col is not 1 isNotCenter() return true`() {
         // given
-        val cell = makeCell()
+        val cell: Cell = makeCell()
         // when
         val isNotCenter: Boolean = cell.isNotCenter()
         // then
@@ -41,7 +41,7 @@ class CellTest {
     @Test
     fun `when row and col is 1 isNotCenter() return false`() {
         // given
-        val cell = makeCell(row = 1, col = 1)
+        val cell: Cell = makeCell(row = 1, col = 1)
         // when
         val isNotCenter: Boolean = cell.isNotCenter()
         // then
@@ -51,7 +51,7 @@ class CellTest {
     @Test
     fun `when clear() is called content is cleaned`() {
         // given
-        val cell = makeCell()
+        val cell: Cell = makeCell()
         // when
         cell.content = Seed.X
         cell.clear()
