@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/onePlayerFragment">
+
+    <fragment
+        android:id="@+id/onePlayerFragment"
+        android:name="io.github.leoallvez.tictactoe.oneplayer.OnePlayerFragment"
+        android:label="fragment_one_player"
+        tools:layout="@layout/fragment_one_player" />
+</navigation>
