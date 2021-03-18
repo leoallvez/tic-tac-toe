@@ -3,13 +3,13 @@
     <data>
         <variable
             name="viewModel"
-            type="io.github.leoallvez.tictactoe.OnePlayerViewModel" />
+            type="io.github.leoallvez.tictactoe.oneplayer.OnePlayerViewModel" />
     </data>
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".OnePlayerFragment">
+        tools:context=".oneplayer.OnePlayerFragment">
         <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"

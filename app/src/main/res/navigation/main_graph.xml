@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/onePlayerFragment"
-        android:name="io.github.leoallvez.tictactoe.OnePlayerFragment"
+        android:name="io.github.leoallvez.tictactoe.oneplayer.OnePlayerFragment"
         android:label="fragment_one_player"
         tools:layout="@layout/fragment_one_player" />
 </navigation>

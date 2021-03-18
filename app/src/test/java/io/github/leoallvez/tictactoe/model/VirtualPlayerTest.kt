@@ -1,6 +1,6 @@
-package io.github.leoallvez.tictactoe
+package io.github.leoallvez.tictactoe.model
 
-import io.github.leoallvez.tictactoe.model.*
+import io.github.leoallvez.tictactoe.Seed
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Assert
@@ -29,7 +29,6 @@ class VirtualPlayerTest {
     }
 
     @Test
-
     fun `when board is full randomPlay() return false`() {
         // given
         val player: VirtualPlayer = makePlayer()
@@ -49,7 +48,19 @@ class VirtualPlayerTest {
         Assert.assertEquals(true, player.randomPlay())
     }
 
-    private fun  makePlayer(seed: Seed = Seed.O) = VirtualPlayer(seed = seed, board = mockk())
+    @Test
+    fun `when player are create the all board cells are empty`() {
+        // give
+        val player: VirtualPlayer = VirtualPlayer(Seed.X)
+        // when
+        player.board.run { cells ->
+            val emptyCells = cells.filter { it.isEmpty() }
+            // then
+            Assert.assertEquals(3, emptyCells.size)
+        }
+    }
+
+    private fun makePlayer(seed: Seed = Seed.O) = VirtualPlayer(seed = seed, board = mockk())
 
     private fun makeBoard(seed: Seed? = null): Array<Array<Cell>> {
         return Array(Board.SIZE) { row ->

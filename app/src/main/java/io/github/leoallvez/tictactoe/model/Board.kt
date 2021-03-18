@@ -8,8 +8,8 @@ object Board {
 
     val cells: Array<Array<Cell>> by lazy {
         Array(SIZE) { row ->
-            Array(SIZE) { column ->
-                Cell(row, column)
+            Array(SIZE) { col ->
+                Cell(row, col)
             }
         }
     }

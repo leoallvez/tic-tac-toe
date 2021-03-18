@@ -1,4 +1,4 @@
-package io.github.leoallvez.tictactoe
+package io.github.leoallvez.tictactoe.oneplayer
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

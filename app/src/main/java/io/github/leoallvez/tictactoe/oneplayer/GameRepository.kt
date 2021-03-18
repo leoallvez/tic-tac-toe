@@ -1,7 +1,8 @@
-package io.github.leoallvez.tictactoe
+package io.github.leoallvez.tictactoe.oneplayer
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import io.github.leoallvez.tictactoe.Seed
 import io.github.leoallvez.tictactoe.model.Board
 import io.github.leoallvez.tictactoe.model.HumanPlayer
 import io.github.leoallvez.tictactoe.model.VirtualPlayer

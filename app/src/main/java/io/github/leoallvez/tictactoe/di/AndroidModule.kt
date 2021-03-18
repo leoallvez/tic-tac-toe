@@ -1,8 +1,8 @@
 package io.github.leoallvez.tictactoe.di
 
-import io.github.leoallvez.tictactoe.GameRepository
-import io.github.leoallvez.tictactoe.IGameRepository
-import io.github.leoallvez.tictactoe.OnePlayerViewModel
+import io.github.leoallvez.tictactoe.oneplayer.GameRepository
+import io.github.leoallvez.tictactoe.oneplayer.IGameRepository
+import io.github.leoallvez.tictactoe.oneplayer.OnePlayerViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

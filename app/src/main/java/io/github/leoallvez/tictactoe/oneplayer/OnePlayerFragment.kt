@@ -1,4 +1,4 @@
-package io.github.leoallvez.tictactoe
+package io.github.leoallvez.tictactoe.oneplayer
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import io.github.leoallvez.tictactoe.R
+import io.github.leoallvez.tictactoe.Seed
 import io.github.leoallvez.tictactoe.databinding.FragmentOnePlayerBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

@@ -1,6 +1,6 @@
-package io.github.leoallvez.tictactoe
+package io.github.leoallvez.tictactoe.model
 
-import io.github.leoallvez.tictactoe.model.Cell
+import io.github.leoallvez.tictactoe.Seed
 import org.junit.Test
 import org.junit.Assert.*
 
