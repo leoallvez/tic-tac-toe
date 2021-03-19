@@ -9,6 +9,7 @@ class HumanPlayerTest {
     @Test
     fun `when cell empty play() method change the board cell content`() {
         // given
+        Board.restart()
         val player = HumanPlayer(Seed.X)
         // when
         val row = 0; val col = 0
@@ -21,6 +22,7 @@ class HumanPlayerTest {
     @Test
     fun `when cell not empty play() method not change the board cell content`() {
         // given
+        Board.restart()
         val player = HumanPlayer(Seed.X)
         // when
         val row = 0; val col = 0
@@ -35,6 +37,7 @@ class HumanPlayerTest {
     @Test
     fun `when toScore() is called points are increased`() {
         // given
+        Board.restart()
         val player = HumanPlayer(Seed.X)
         // when
         player.toScore()

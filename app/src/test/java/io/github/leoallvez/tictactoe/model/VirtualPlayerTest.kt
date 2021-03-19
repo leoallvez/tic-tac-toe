@@ -51,7 +51,7 @@ class VirtualPlayerTest {
     @Test
     fun `when player are create the all board cells are empty`() {
         // give
-        val player: VirtualPlayer = VirtualPlayer(Seed.X)
+        val player = VirtualPlayer(Seed.X)
         // when
         player.board.run { cells ->
             val emptyCells = cells.filter { it.isEmpty() }
