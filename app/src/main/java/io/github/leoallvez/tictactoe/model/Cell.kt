@@ -16,8 +16,4 @@ class Cell(val row: Int, val col: Int) {
     fun isNotCenter(): Boolean {
         return !(row == 1 && col == 1)
     }
-
-    override fun toString(): String {
-        return "row: $row, col: $col, content: $content"
-    }
 }

@@ -9,5 +9,6 @@ class HumanPlayer(seed: Seed, board: Board = Board) : Player(seed, board) {
         if (cell.isEmpty()) {
             cell.content = seed
         }
+        if (won()) { toScore() }
     }
 }

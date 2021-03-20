@@ -5,7 +5,7 @@ import io.github.leoallvez.tictactoe.model.Board
 
 interface IGameRepository {
 
-    fun getPoints(): LiveData<String>
+    fun getPoints(): LiveData<Pair<Int, Int>>
 
     fun getBoard(): LiveData<Board>
 

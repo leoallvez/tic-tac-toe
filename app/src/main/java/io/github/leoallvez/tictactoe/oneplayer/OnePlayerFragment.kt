@@ -32,16 +32,16 @@ class OnePlayerFragment : Fragment() {
         viewModel.getBoard().observe(viewLifecycleOwner, { board ->
             board?.run { row, col ->
                 when(board.cells[row][col].content) {
-                    Seed.O -> print(row, col, R.color.lightBlue, "X")
-                    Seed.X -> print(row, col, R.color.lightPink, "0")
+                    Seed.O -> print(row, col, R.color.lightBlue, "O")
+                    Seed.X -> print(row, col, R.color.lightPink, "X")
                     else   -> print(row, col, R.color.colorGreen, null)
                 }
             }
         })
         viewModel.getPoints().observe(viewLifecycleOwner, { points ->
-            points?.let {
-                binding.points.text = points
-            }
+            val human = points.first
+            val machine = points.second
+            binding.points.text = getString(R.string.score, human, machine)
         })
     }
 

@@ -2,11 +2,12 @@ package io.github.leoallvez.tictactoe.oneplayer
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import io.github.leoallvez.tictactoe.LivePoints
 import io.github.leoallvez.tictactoe.model.Board
 
 class OnePlayerViewModel(private val repository: IGameRepository) : ViewModel() {
 
-    fun getPoints(): LiveData<String> {
+    fun getPoints(): LivePoints {
         return repository.getPoints()
     }
 

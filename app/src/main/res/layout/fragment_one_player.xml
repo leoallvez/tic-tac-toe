@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="viewModel"
             type="io.github.leoallvez.tictactoe.oneplayer.OnePlayerViewModel" />
     </data>
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".oneplayer.OnePlayerFragment">
+<!--    <FrameLayout-->
+<!--        xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        tools:context=".oneplayer.OnePlayerFragment">-->
         <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
             <!--Table Layout with 3 rows and each row with 3 buttons-->
             <TableLayout
                 android:id="@+id/glGameBoard"
@@ -23,129 +24,73 @@
                 android:layout_below="@+id/tvInfo"
                 android:rowCount="3"
                 android:columnCount="3"
-                android:padding="8dp">
+                android:padding="10dp">
                 <TextView
                     android:id="@+id/points"
                     android:layout_width="match_parent"
-                    android:text="@{viewModel.getPoints()}"
                     android:padding="4dp"
                     android:layout_height="wrap_content" />
                 <!--Row 1-->
                 <TableRow>
                     <Button
-                        android:id="@+id/btnRow0Col0"
+                        style="@style/Cell"
+                        android:tag="0:0"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:textSize="22sp"
-                        android:textColor="#FFFFFF"
-                        android:background="#B2FF59"
-                        android:gravity="center"
-                        android:layout_margin="8dp"
-                        style="@style/Widget.AppCompat.Button"
-                        android:tag="0:0"
                         android:onClick="@{() -> viewModel.play(0, 0)}"/>
                     <Button
-                        android:id="@+id/btnRow0Col1"
+                        style="@style/Cell"
+                        android:tag="0:1"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:textSize="22sp"
-                        android:textColor="#FFFFFF"
-                        android:background="#B2FF59"
-                        android:gravity="center"
-                        android:layout_margin="8dp"
-                        style="@style/Widget.AppCompat.Button"
-                        android:tag="0:1"
                         android:onClick="@{() -> viewModel.play(0, 1)}"/>
                     <Button
-                        android:id="@+id/btnRow0Col2"
+                        style="@style/Cell"
+                        android:tag="0:2"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:textSize="22sp"
-                        android:textColor="#FFFFFF"
-                        android:background="#B2FF59"
-                        android:gravity="center"
-                        android:layout_margin="8dp"
-                        style="@style/Widget.AppCompat.Button"
-                        android:tag="0:2"
                         android:onClick="@{() -> viewModel.play(0, 2)}"/>
                 </TableRow>
                 <!--Row 2-->
                 <TableRow>
 
                     <Button
-                        android:id="@+id/btnRow1Col0"
+                        style="@style/Cell"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:textSize="22sp"
-                        android:textColor="#FFFFFF"
-                        android:background="#B2FF59"
-                        android:gravity="center"
-                        android:layout_margin="8dp"
-                        style="@style/Widget.AppCompat.Button"
                         android:tag="1:0"
                         android:onClick="@{() -> viewModel.play(1, 0)}"/>
                     <Button
-                        android:id="@+id/btnRow1Col1"
+                        style="@style/Cell"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:textSize="22sp"
-                        android:textColor="#FFFFFF"
-                        android:background="#B2FF59"
-                        android:gravity="center"
-                        android:layout_margin="8dp"
-                        style="@style/Widget.AppCompat.Button"
                         android:tag="1:1"
                         android:onClick="@{() -> viewModel.play(1, 1)}"/>
                     <Button
-                        android:id="@+id/btnRow1Col2"
+                        style="@style/Cell"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:textSize="22sp"
-                        android:textColor="#FFFFFF"
-                        android:background="#B2FF59"
-                        android:gravity="center"
-                        android:layout_margin="8dp"
-                        style="@style/Widget.AppCompat.Button"
                         android:tag="1:2"
                         android:onClick="@{() -> viewModel.play(1, 2)}"/>
                 </TableRow>
                 <!--Row 3-->
                 <TableRow>
-
                     <Button
-                        android:id="@+id/btnRow2Col0"
+                        style="@style/Cell"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:textSize="22sp"
-                        android:textColor="#FFFFFF"
-                        android:background="#B2FF59"
-                        android:gravity="center"
-                        android:layout_margin="8dp"
-                        style="@style/Widget.AppCompat.Button"
                         android:tag="2:0"
                         android:onClick="@{() -> viewModel.play(2, 0)}"/>
                     <Button
-                        android:id="@+id/btnRow2Col1"
+                        style="@style/Cell"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:textSize="22sp"
-                        android:textColor="#FFFFFF"
-                        android:background="#B2FF59"
-                        android:gravity="center"
-                        android:layout_margin="8dp"
-                        style="@style/Widget.AppCompat.Button"
                         android:tag="2:1"
                         android:onClick="@{() -> viewModel.play(2, 1)}"/>
                     <Button
-                        android:id="@+id/btnRow2Col2"
+                        style="@style/Cell"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:textSize="22sp"
-                        android:textColor="#FFFFFF"
-                        android:background="#B2FF59"
-                        android:gravity="center"
-                        android:layout_margin="8dp"
-                        style="@style/Widget.AppCompat.Button"
                         android:tag="2:2"
                         android:onClick="@{() -> viewModel.play(2, 2)}"/>
                 </TableRow>
@@ -170,6 +115,7 @@
                 android:layout_below="@+id/glGameBoard"
                 android:layout_centerHorizontal="true"
                 android:layout_margin="16dp"
+                android:radius="5dp"
                 android:padding="8dp"
                 android:text="@string/text_reset"
                 android:textSize="18sp"
@@ -177,5 +123,5 @@
                 android:onClick="@{() -> viewModel.startGame()}"
                 android:background="@color/colorPrimary"/>
         </RelativeLayout>
-    </FrameLayout>
+<!--    </FrameLayout>-->
 </layout>

@@ -7,6 +7,7 @@ class VirtualPlayer(seed: Seed, board: Board = Board) : Player(seed, board) {
 
     val opponentSeed by lazy { if(seed == Seed.X) Seed.O else Seed.X }
 
+    //TODO: make a game level
     private val rules by lazy {
         listOf<() -> Boolean> (::rule1, ::rule2, ::rule3, ::rule4, ::rule5, ::rule6)
     }
@@ -21,13 +22,14 @@ class VirtualPlayer(seed: Seed, board: Board = Board) : Player(seed, board) {
                 cell.content = seed
                 return true
             }
-        } while (checkedCells.size != 9)
+        } while (checkedCells.size <= 8)
         return false
     }
 
     fun play(): Boolean {
         rules.forEach { rule ->
             if(rule.invoke()) {
+                if (won()) { toScore() }
                 return@play true
             }
         }
@@ -51,14 +53,22 @@ class VirtualPlayer(seed: Seed, board: Board = Board) : Player(seed, board) {
         return play
     }
 
-    // 2 - caso contrário se algum movimento que cria uma linhas com
-    // duas casas ocupadas, faça ele.
+    /**
+     * 1 - If any movement creates a line with two occupied cells, do it.
+     * @return [Boolean] applied rule or not
+     */
     private fun rule1(): Boolean = rule0(seed)
 
-    // 1 - se o oponente ocupar duas casas seguidas, ocupe a terceira
+    /**
+     * 2 - If the opponent occupies two cells in a row, occupy the third.
+     * @return [Boolean] applied rule or not
+     */
     private fun rule2(): Boolean = rule0(opponentSeed)
 
-    // 3 - caso contrário, se o espaço do centro estive vazio, ocupe ele
+    /**
+     * 3 - Otherwise, if the central space is empty, occupy it.
+     * @return [Boolean] applied rule or not
+     */
     private fun rule3(): Boolean {
         val cell = board.cells[1][1]
         if (cell.isEmpty()) {
@@ -68,7 +78,10 @@ class VirtualPlayer(seed: Seed, board: Board = Board) : Player(seed, board) {
         return false
     }
 
-    // 4 - caso contrário, se o oponente preencheu uma quina, preencha a quina contrária.
+    /**
+     * 4 - Otherwise, if the opponent has filled in a corner, fill in the opposite corner.
+     * @return [Boolean] applied rule or not
+     */
     private fun rule4(): Boolean {
         val diagonalCells = board.getDiagList()
         diagonalCells.forEach { cells ->
@@ -85,7 +98,10 @@ class VirtualPlayer(seed: Seed, board: Board = Board) : Player(seed, board) {
         return false
     }
 
-    // 5 - caso contrário, se tiver uma quina vázia preencha ela.
+    /**
+     * 5 - Otherwise, if you have an empty corner, fill it out.
+     * @return [Boolean] applied rule or not
+     */
     private fun rule5(): Boolean {
         val diagonals = board.getDiagList()
         diagonals.forEach { cells ->
@@ -99,6 +115,9 @@ class VirtualPlayer(seed: Seed, board: Board = Board) : Player(seed, board) {
         return false
     }
 
-    // 6 - se nenhuma dessas condições acontencer, pode preencher qualquer espaço vázio.
+    /**
+     * 6 - if none of these conditions happens, you can fill any empty cell.
+     * @return [Boolean] applied rule or not
+     */
     private fun rule6(): Boolean = randomPlay()
 }

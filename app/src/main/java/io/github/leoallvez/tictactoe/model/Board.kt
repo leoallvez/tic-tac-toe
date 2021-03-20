@@ -1,6 +1,6 @@
 package io.github.leoallvez.tictactoe.model
 
-typealias GetPositionFunction = () -> List<List<Cell>>
+import io.github.leoallvez.tictactoe.GetPositionFunction
 
 object Board {
 
@@ -70,15 +70,15 @@ object Board {
         return diagonalsList
     }
 
-    private fun getPositionsFuns(): List<GetPositionFunction> {
+    private fun getPositionsFunc(): List<GetPositionFunction> {
         return listOf<GetPositionFunction>(
             ::getRowsList, ::getColsList, ::getDiagList
         )
     }
 
     fun run(action: (List<Cell>) -> Unit) {
-        val getPositionFuns = getPositionsFuns()
-        getPositionFuns.forEach { getPosition ->
+        val getPositionFunc = getPositionsFunc()
+        getPositionFunc.forEach { getPosition ->
             val position: List<List<Cell>> = getPosition.invoke()
             position.forEach { cells: List<Cell> ->
                 action(cells)

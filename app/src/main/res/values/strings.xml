@@ -3,6 +3,4 @@
     <string name="text_start">Start</string>
     <string name="text_reset">Reset</string>
     <string name="score">Eu: %1$d, Maquina: %2$d.</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
