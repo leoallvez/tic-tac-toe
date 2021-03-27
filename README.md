@@ -3,12 +3,12 @@
 A simple tic-tac-toe game from which it is impossible to beat artificial intelligence.
 
 ## Libraries used in this project
-- [Navigation](https://developer.android.com/guide/navigation)
-- [Data Binding](https://developer.android.com/topic/libraries/data-binding/)
+- [Architecture Components](https://developer.android.com/topic/libraries/architecture)
 - [Live Data](https://developer.android.com/topic/libraries/architecture/livedata)
+- [Data Binding](https://developer.android.com/topic/libraries/data-binding/)
+- [Navigation](https://developer.android.com/guide/navigation)
 - [Mockk](https://mockk.io/ANDROID.html)
 - [Hilt](https://dagger.dev/hilt/)
-- [Architecture Components](https://developer.android.com/topic/libraries/architecture)
 
 ## Screenshots
 
