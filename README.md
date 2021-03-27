@@ -11,4 +11,4 @@ A simple tic-tac-toe game from which it is impossible to beat artificial intelli
 - [Live Data](https://developer.android.com/topic/libraries/architecture/livedata)
 - [Mockk](https://mockk.io/ANDROID.html)
 - [Hilt](https://dagger.dev/hilt/)
-- [architecture components](https://developer.android.com/topic/libraries/architecture)
+- [Architecture Components](https://developer.android.com/topic/libraries/architecture)
