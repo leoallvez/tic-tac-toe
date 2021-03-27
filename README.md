@@ -1,4 +1,4 @@
-# tic-tac-toe
+# tic tac toe
 
 A simple tic-tac-toe game from which it is impossible to beat artificial intelligence.
 
