@@ -8,8 +8,9 @@ import io.github.leoallvez.tictactoe.Seed
 import io.github.leoallvez.tictactoe.model.Board
 import io.github.leoallvez.tictactoe.model.HumanPlayer
 import io.github.leoallvez.tictactoe.model.VirtualPlayer
+import javax.inject.Inject
 
-class GameRepository : IGameRepository {
+class GameRepository @Inject constructor() : IGameRepository {
 
     private val humanPlayer by lazy { HumanPlayer(Seed.O) }
     private val virtualPlayer by lazy { VirtualPlayer(Seed.X) }

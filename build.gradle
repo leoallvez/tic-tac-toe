@@ -3,9 +3,12 @@ buildscript {
     ext {
         nav_version = "2.3.3"
         kotlin_version = "1.4.31"
-        koin_version= "2.2.2"
         multidex_version = "2.0.1"
         mockk_version = "1.10.6"
+        hilt_version = "2.28-alpha"
+        hilt_viewmodel_version = "1.0.0-alpha01"
+        fragment_version = "1.2.5"
+        mockito_version = "2.7.22"
     }
     repositories {
         google()
@@ -14,6 +17,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

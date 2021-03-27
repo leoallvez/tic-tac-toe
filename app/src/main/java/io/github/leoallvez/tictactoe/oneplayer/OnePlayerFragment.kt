@@ -7,14 +7,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.leoallvez.tictactoe.R
 import io.github.leoallvez.tictactoe.Seed
 import io.github.leoallvez.tictactoe.databinding.FragmentOnePlayerBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@AndroidEntryPoint
 class OnePlayerFragment : Fragment() {
 
-    private val viewModel: OnePlayerViewModel by viewModel()
+    private val viewModel: OnePlayerViewModel by viewModels()
     private lateinit var binding: FragmentOnePlayerBinding
 
     override fun onCreateView(
